@@ -1,0 +1,39 @@
+package com.example.ioc;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class StringServiceImpl implements StringService{
+
+	//lamamos el repositorio
+	private StringRepository dao;
+	
+	 public StringRepository(StringRepository dao) {
+		 
+		 this.dao=dao;
+	 }
+	@Override
+	public String get(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(String item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modify(String item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

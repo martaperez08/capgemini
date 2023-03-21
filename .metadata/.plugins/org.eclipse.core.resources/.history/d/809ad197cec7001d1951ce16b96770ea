@@ -1,0 +1,23 @@
+package com.example.ioc;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@Qualifier("Local")
+public class StringRepositoryImpl implements StringRepository {
+
+	@Override
+	public String load() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(String item) {
+		System.out.println("Guardo el item"+ item);
+	
+	}
+
+}
