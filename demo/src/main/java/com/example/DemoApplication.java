@@ -48,7 +48,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicacion arrancada");
 
-		// inyeccion manual
+		// inyeccion manua
 		/*
 		 * StringRepositoryImpl dao= new StringRepositoryImpl(); var srv= new
 		 * StringServiceImpl(dao);
