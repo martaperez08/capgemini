@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import lombok.experimental.var;
 
@@ -53,6 +55,24 @@ class CalculadoraTest {
 				var rslt = calc.suma(0.3,0.2);
 				assertEquals(0.5, rslt);
 			}
+			@Test
+			void testSumaMultiple() {
+			
+				assertEquals(2, calc.suma(1, 1));
+				assertEquals(0, calc.suma(-1, 1));
+				assertEquals(-2, calc.suma(-1, -1));
+				assertEquals(4, calc.suma(1, 3));
+				
+			}
+			//test parametrizado
+			@ParameterizedTest(name= "{0} {1}={2}")
+			@CsvSource(value ={"1,1,2","0.1,0.2,0.3"})
+			void testSumaOK(double a, double b , double rslt) {
+				
+				assertEquals(rslt, calc.suma(a, b));
+			}
+
+			
 			
 		}
 		
