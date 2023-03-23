@@ -3,62 +3,103 @@ package com.example.ejemplos;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import lombok.experimental.var;
 
 class CalculadoraTest {
+	
+	// para hacerlo mejor metemos los test en classes 
+	Calculadora calc;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		//Reinstanciamos la calculadora antes de cada test
+		calc = new Calculadora();
 	}
+	
+	
+	@Nested
+	@DisplayName("Pruebas del método Suma")
 
-	@Test
-	void testSuma() {
-		var calculadora= new Calculadora();
+	class Suma {
 		
-		var resultado= calculadora.suma(2, 2);
+		@Nested
+		class OK {
+			
+			@Test
+			void test_Suma() {
+				var rslt = calc.suma(2, 2);
+				assertEquals(4, rslt);
+			}
+			
+			@Test
+			void test_Suma_Positivo_Negativo() {
+				var rslt = calc.suma(1, -4);
+				assertEquals(-3, rslt);
+			}
+			
+			@Test
+			void test_Suma_Negativo_Positivo() {
+				var rslt = calc.suma(-1,5);
+				assertEquals(4, rslt);
+			}
+			
+			@Test
+			void test_Suma_Decimales() {
+				var rslt = calc.suma(0.3,0.2);
+				assertEquals(0.5, rslt);
+			}
+			
+		}
 		
-		assertEquals(4, resultado); //lo que esperass y lo que has obtenido y darle run as junit 
+		@Nested
+		class KO {
+			
+			@Test
+			void testSumaPositivoNegativo() {
+				var rslt = calc.suma(1, -0.9);
+				assertEquals(0.1, rslt);
+			}
+			
+			@Test
+			void testSumaDecimales() {
+				var rslt = calc.suma(0.1,0.2);
+				assertEquals(0.3, rslt);
+			}
+			
+		}
 		
 	}
-
-	@Test
-	void testSumaPositivoNegativo() {
-		var calculadora= new Calculadora();
-		
-		var resultado= calculadora.suma(3, -1);
-		
-		assertEquals(2, resultado); //lo que esperass y lo que has obtenido y darle run as junit 
-		
+	
+	@Nested
+	class Divide {
+		@Nested
+		class OK {
+			
+			@Test
+			void testDividir() {
+				var rslt = calc.dividir(4,2);
+				assertEquals(2, rslt);
+			}
+			
+		}
+		@Nested
+		class KO {
+			
+			@Test
+			void testDividir() {
+				//var rslt = calc.divide(1,0);
+				//assertEquals(Double.POSITIVE_INFINITY, rslt);
+				
+				// este seria para el metodo divide con enteros
+				assertThrows(ArithmeticException.class, () -> calc.dividir(1, 0));
+			}
+			
+		}
 	}
-	@Test
-	void testSumaNegativoPositivo() {
-		var calculadora= new Calculadora();
-		
-		var resultado= calculadora.suma(-1, 5);
-		
-		assertEquals(4, resultado); //lo que esperass y lo que has obtenido y darle run as junit 
-		
-	}
-
-	/*@Test
-	void testSumaDecimales() {
-		var calculadora= new Calculadora();
-		
-		var resultado= calculadora.suma(0.1, 0.2);
-		
-		assertEquals(0.3, resultado); //lo que esperass y lo que has obtenido y darle run as junit 
-		
-	}*/
-
-	@Test
-	void testDividir() {
-		var calculadora= new Calculadora();
-		
-		var resultado= calculadora.dividir(1, 2);
-		
-		assertEquals(0.5, resultado); //lo que esperass y lo que has obtenido y darle run as junit 
-		
-	}
+	
 }
