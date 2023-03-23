@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import lombok.experimental.var;
@@ -15,6 +16,7 @@ class PersonaTest {
 	void setUp() throws Exception {
 	}
 
+	
 	@Test
 	void test() {
 		// no me funciona builder
@@ -35,6 +37,7 @@ class PersonaTest {
 
 	
 	//repetirlo x veces 
+	@Tag("smoke")
 	@RepeatedTest(value = 5, name = "{displayName}{currentRepetition}/{totalRepetitions}")
 	void repeatedTest(RepetitionInfo repetitionInfo) {
 		var p = new Persona(repetitionInfo.getCurrentRepetition(), "Pepito"+ (repetitionInfo.getCurrentRepetition() % 3 == 0 ? "" : repetitionInfo.getCurrentRepetition()), "Grillo");

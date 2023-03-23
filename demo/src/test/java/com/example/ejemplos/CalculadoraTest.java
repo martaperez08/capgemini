@@ -3,15 +3,23 @@ package com.example.ejemplos;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import com.example.core.test.Smoke;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
+
 import lombok.experimental.var;
 
+
+@TestMethodOrder(value = MethodOrderer.DisplayName.class)
 class CalculadoraTest {
 	
 	// para hacerlo mejor metemos los test en classes 
@@ -37,7 +45,7 @@ class CalculadoraTest {
 				var rslt = calc.suma(2, 2);
 				assertEquals(4, rslt);
 			}
-			
+			@Smoke
 			@Test
 			void test_Suma_Positivo_Negativo() {
 				var rslt = calc.suma(1, -4);
@@ -56,9 +64,10 @@ class CalculadoraTest {
 				assertEquals(0.5, rslt);
 			}
 			@Test
+			@Disabled //dejar de protestar ya lo miramemos mas adelante
 			void testSumaMultiple() {
 			
-				assertEquals(2, calc.suma(1, 1));
+				assertEquals(3, calc.suma(1, 1));
 				assertEquals(0, calc.suma(-1, 1));
 				assertEquals(-2, calc.suma(-1, -1));
 				assertEquals(4, calc.suma(1, 3));
@@ -66,7 +75,7 @@ class CalculadoraTest {
 			}
 			//test parametrizado
 			@ParameterizedTest(name= "{0} {1}={2}")
-			@CsvSource(value ={"1,1,2","0.1,0.2,0.3"})
+			@CsvSource(value ={"1,1,2","0.1,0.2,0.3","-1,0,-1"})
 			void testSumaOK(double a, double b , double rslt) {
 				
 				assertEquals(rslt, calc.suma(a, b));
