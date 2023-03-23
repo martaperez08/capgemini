@@ -40,7 +40,7 @@ public class Persona {
 	}
 
 	public void setNombre(String nombre) {
-		if (nombre == null)
+		if (nombre == null || "".equals(nombre) || nombre.length()<2)
 			throw new IllegalArgumentException();
 		this.nombre = nombre;
 	}
