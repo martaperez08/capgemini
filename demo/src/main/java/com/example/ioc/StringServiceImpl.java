@@ -3,6 +3,9 @@ package com.example.ioc;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.example.exception.InvalidDataException;
+import com.example.exception.NotFoundException;
+
 @Service
 @Qualifier("Local")
 public class StringServiceImpl implements StringService{
@@ -23,21 +26,26 @@ public class StringServiceImpl implements StringService{
 	}
 
 	@Override
-	public void add(String item) {
+	public void add(String item) throws NotFoundException {
+		// TODO Auto-generated method stub
+		try {
+			dao.save(item);
+		} catch (InvalidDataException e ) {
+			throw new NotFoundException("No encontrado",e);
+		}
+
+		
+	}
+
+	@Override
+	public void modify(String item)  throws InvalidDataException{
 		// TODO Auto-generated method stub
 		dao.save(item);
 		
 	}
 
 	@Override
-	public void modify(String item) {
-		// TODO Auto-generated method stub
-		dao.save(item);
-		
-	}
-
-	@Override
-	public void remove(Integer id) {
+	public void remove(Integer id)   throws InvalidDataException{
 		// TODO Auto-generated method stub
 		dao.save(id.toString());
 		

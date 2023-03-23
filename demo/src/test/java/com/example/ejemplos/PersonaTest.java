@@ -8,6 +8,7 @@ import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import lombok.Builder;
 import lombok.experimental.var;
 
 class PersonaTest {
@@ -20,7 +21,7 @@ class PersonaTest {
 	@Test
 	void test() {
 		// no me funciona builder
-		// var p= Persona.builder().id(1).nombre("Pepito").apellidos("Grillo").build();
+		// var pa= Persona.builder().id(1).nombre("Pepito").apellidos("Grillo").build();
 
 		var p = new Persona(1, "Pepito", "Grillo");
 		// p= null;
