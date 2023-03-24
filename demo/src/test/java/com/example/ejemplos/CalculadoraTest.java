@@ -1,6 +1,10 @@
 package com.example.ejemplos;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -71,6 +75,7 @@ class CalculadoraTest {
 				assertEquals(0, calc.suma(-1, 1));
 				assertEquals(-2, calc.suma(-1, -1));
 				assertEquals(4, calc.suma(1, 3));
+				assumeTrue(false,"La tengo a media");
 				
 			}
 			//test parametrizado
@@ -81,7 +86,14 @@ class CalculadoraTest {
 				assertEquals(rslt, calc.suma(a, b));
 			}
 
-			
+
+			@Test
+			void testSumaMock() {
+				Calculadora calc= mock(Calculadora.class);//creamos un mock de calcu
+				when(calc.suma(anyDouble(), anyDouble())).thenReturn(3.0);
+				assertEquals(3, calc.suma(2, 2));
+			}
+			//por ejemplo aqui 2+2 son 4 pero le indicamos que devuelva 3 y pasa prueba
 			
 		}
 		
@@ -89,6 +101,7 @@ class CalculadoraTest {
 		class KO {
 			
 			@Test
+			//g
 			void testSumaPositivoNegativo() {
 				var rslt = calc.suma(1, -0.9);
 				assertEquals(0.1, rslt);

@@ -13,8 +13,6 @@ public class StringRemoteServiceImpl implements StringService {
 	@Autowired
 	private StringRepository dao;
 
-	
-
 		 public StringRemoteServiceImpl(StringRepository dao) {
 			 
 			 this.dao=dao;
