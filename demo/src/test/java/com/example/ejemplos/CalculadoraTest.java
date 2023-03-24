@@ -75,7 +75,7 @@ class CalculadoraTest {
 				assertEquals(0, calc.suma(-1, 1));
 				assertEquals(-2, calc.suma(-1, -1));
 				assertEquals(4, calc.suma(1, 3));
-				assumeTrue(false,"La tengo a media");
+				assumeTrue(false,"La tengo a media");// te sale que esta mal pero no rojo
 				
 			}
 			//test parametrizado
