@@ -20,7 +20,7 @@ class ValidadorTest {
 	
 	@Test
 	void validacionDni() {
-		String dniString="12345678Z";
+		String dniString="12345678z";
 		var resultado = validador.validarDNI(dniString);
 		assertEquals(true,resultado );
 		
