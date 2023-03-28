@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.example.domains.contracts.repositories.ActorRepository;
+import com.example.domains.entities.Actor;
 import com.example.ioc.Rango;
 import com.example.ioc.StringRepositoryImpl;
 import com.example.ioc.StringService;
@@ -29,7 +31,11 @@ public class DemoApplication implements CommandLineRunner {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	// cunado creas la classes inyecta en StringService busca la que esta marcad por
+	
+
+	
+	
+	// cadunado creas la classes inyecta en StringService busca la que esta marcad por
 	// @Repositoiro,
 	// en el caso que tengamos otra classes con el repositorio se ejcutaria esa
 
@@ -78,6 +84,9 @@ public class DemoApplication implements CommandLineRunner {
 	      }
 	      
 	}
+	
+	@Autowired
+	ActorRepository daoBase;
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicacion arrancada");
@@ -85,8 +94,8 @@ public class DemoApplication implements CommandLineRunner {
 		// inyeccion manua
 		/*
 		 * StringRepositoryImpl dao= new StringRepositoryImpl(); var srv= new
-		 * StringServiceImpl(dao);
-		 */
+		 * StringServiceImpl(dao);*/
+		 
 		System.out.println(srvLocal.get(1));
 		System.out.println(config);
 		
@@ -106,6 +115,28 @@ public class DemoApplication implements CommandLineRunner {
 				SELECT concat(first_name, ' ', last_name)
 				from actor
 				""", String.class).forEach(System.out::println);
+		
+		
+		
+			System.out.println("**************BASE DE DATOOS*****************");
+			//var actor = new Actor(0, "Pepito", "Grillo");
+			//daoBase.save(actor);
+			daoBase.findAll().forEach(System.out::println);
+			var item = daoBase.findById(215);
+			if (item.isPresent()) {
+				var actor = item.get();
+				actor.setLastName(actor.getLastName().toUpperCase());
+				daoBase.save(actor);
+				daoBase.findAll().forEach(System.out::println);				
+			}else {
+				System.out.println("Actor no encontrado");
+			}
+			
+			
+			System.out.println("****************BASE DE DATOOS*****************");
+			daoBase.findTop5ByFirstNameStartingWithOrderByLastName("p").forEach(System.out::println);
+			
+		
 
 	}
 
