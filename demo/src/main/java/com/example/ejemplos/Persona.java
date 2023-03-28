@@ -27,24 +27,7 @@ public class Persona {
 
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		if (nombre == null || "".equals(nombre) || nombre.length()<2)
-			throw new IllegalArgumentException();
-		this.nombre = nombre;
-	}
-
+	
 	// por si viene nullo el apellido
 	public Optional<String> getApellido() {
 		return Optional.ofNullable(apellido);

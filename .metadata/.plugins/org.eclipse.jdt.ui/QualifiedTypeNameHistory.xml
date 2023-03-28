@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayNameGenerator"/>
-    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
     <fullyQualifiedTypeName name="java.math.RoundingMode"/>
     <fullyQualifiedTypeName name="java.lang.ArithmeticException"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.RepeatedTest"/>
@@ -58,6 +56,8 @@
     <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.ActorRepository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="lombok.experimental.var"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
+    <fullyQualifiedTypeName name="lombok.experimental.var"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
 </qualifiedTypeNameHistroy>

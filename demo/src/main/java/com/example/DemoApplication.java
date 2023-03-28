@@ -3,6 +3,7 @@ package com.example;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +22,9 @@ import com.example.ioc.StringServiceImpl;
 import com.example.ioc.UnaTonteria;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.var;
+
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -65,12 +67,7 @@ public class DemoApplication implements CommandLineRunner {
 		private int id;
 		private String first_name, last_name;
 		
-		public Actor(int id, String first_name, String last_name) {
-			super();
-			this.id = id;
-			this.first_name = first_name;
-			this.last_name = last_name;
-		}
+	
 		
 		//loombok
 		
@@ -104,7 +101,6 @@ public class DemoApplication implements CommandLineRunner {
 		System.out.println(tonteria.dimeAlgo());
 		
 		
-		
 		var lst = jdbcTemplate.query("""
 				SELECT actor_id, first_name, last_name
 				from actor
@@ -135,8 +131,27 @@ public class DemoApplication implements CommandLineRunner {
 			
 			System.out.println("****************BASE DE DATOOS*****************");
 			daoBase.findTop5ByFirstNameStartingWithOrderByLastName("p").forEach(System.out::println);
+			System.out.println("****************COONSULTAS*****************");
+			daoBase.findConJPQL().forEach(System.out::println);
+			System.out.println("*********************************");
+			daoBase.findConJPQL(5).forEach(System.out::println);
+			System.out.println("*********************************");
+			daoBase.findConSQL(5).forEach(System.out::println);
+			System.out.println("++++++++++++++");
+			daoBase.findAll((root, query, builder) -> builder.lessThan(root.get("actorId"), 5)).forEach(System.out::println);
+			daoBase.findAll((root, query, builder) -> builder.greaterThan(root.get("actorId"), 200)).forEach(System.out::println);
 			
-		
+			System.out.println("---------------------");
+			var  item1 = daoBase.findById(1);
+			if(	item1.isPresent()) {
+				var actor = item1.get();
+			System.out.println(actor);
+			actor.getFilmActors().forEach(o ->System.out.println(o.getFilm().getTitle()));
+			
+			}else {
+				System.out.println("Actor no encontrado ");
+			}
+		// mirar classe acto la de 41
 
 	}
 

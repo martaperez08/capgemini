@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name="actor")
+@Transactional
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
 public class Actor implements Serializable {
 	private static final long serialVersionUID = 1L;
