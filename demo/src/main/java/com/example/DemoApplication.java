@@ -10,16 +10,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.ActorShort;
 import com.example.ioc.Rango;
 import com.example.ioc.StringRepositoryImpl;
 import com.example.ioc.StringService;
 import com.example.ioc.StringServiceImpl;
 import com.example.ioc.UnaTonteria;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -83,17 +88,40 @@ public class DemoApplication implements CommandLineRunner {
 //		} else {
 //			System.out.println("Actor no encontrado");
 //		}
-		var actor = new Actor(0, "4", "d");
+		//PAGINACION
+	//	var rslt= dao.findAll(PageRequest.of(1, 20, Sort.by("actorId")));
+		//rslt.getContent().forEach(System.out::println);
+		
+		//VERTICAL
+		dao.findAllBy(ActorShort.class).forEach(item->System.out.println(item.getActorId() + " " + item.getNombre()));
+		//dao.findAllBy(ActorDTO.class).forEach(System.out::println);
+		
+		
+	//	var actor = new Actor(0, "4", "d");
 //		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 //		var err = validator.validate(actor);
 //		if(err.size() > 0) {
 //			err.forEach(e -> System.out.println(e.getPropertyPath() + ": " + e.getMessage()));
 //		} else 
 //			dao.save(actor);
-		if (actor.isInvalid()) {
-			System.out.println(actor.getErrorsMessage());
-		} else
-			dao.save(actor);
+	//	if (actor.isInvalid()) {
+//			System.out.println(actor.getErrorsMessage());
+//	} else
+//			dao.save(actor);
+//	}
+		
+		//JASCKSOSOON
+		ObjectMapper objectMapper = new ObjectMapper();
+		dao.findAllBy(ActorDTO.class).stream().map(
+				item->{
+					try {
+						return objectMapper.writeValueAsString(item);
+					} catch (Exception e) {
+						return "";
+					}
+					
+					
+					
+				}).forEach(System.out::println);
 	}
-
 }
