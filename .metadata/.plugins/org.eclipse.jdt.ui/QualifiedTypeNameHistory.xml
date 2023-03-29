@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.math.RoundingMode"/>
-    <fullyQualifiedTypeName name="java.lang.ArithmeticException"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.RepeatedTest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.RepetitionInfo"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.params.ParameterizedTest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.CsvSource"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Tag"/>
     <fullyQualifiedTypeName name="com.example.core.test.Smoke"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.TestMethodOrder"/>
     <fullyQualifiedTypeName name="com.mysql.cj.x.protobuf.MysqlxCrud.Order"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.MethodOrderer"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.MethodOrderer.DisplayName"/>
-    <fullyQualifiedTypeName name="lombok.Builder"/>
     <fullyQualifiedTypeName name="com.example.exception.ArgumentoInvalidoException"/>
     <fullyQualifiedTypeName name="com.example.exception.NotFoundException"/>
     <fullyQualifiedTypeName name="com.example.exception.InvalidDataException"/>
@@ -44,8 +36,6 @@
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="com.gildedrose.Item"/>
     <fullyQualifiedTypeName name="java.lang.module.ModuleDescriptor.Builder"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.FilmActor"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
@@ -55,9 +45,19 @@
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.ActorRepository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
-    <fullyQualifiedTypeName name="lombok.experimental.var"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaSpecificationExecutor"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item"/>
+    <fullyQualifiedTypeName name="lombok.experimental.var"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
+    <fullyQualifiedTypeName name="com.example.DemoApplication.Actor"/>
+    <fullyQualifiedTypeName name="lombok.var"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
 </qualifiedTypeNameHistroy>
