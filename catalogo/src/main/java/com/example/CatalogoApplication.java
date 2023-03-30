@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.contracts.repositories.FilmRepository;
+import com.example.domains.contracts.service.CategoryService;
+import com.example.domains.contracts.service.FilmService;
+import com.example.domains.contracts.service.LanguageService;
 import com.example.domains.entities.dtos.FilmDTO;
 import com.example.domains.entities.dtos.FilmShort;
 
@@ -17,12 +20,25 @@ public class CatalogoApplication implements CommandLineRunner {
 		SpringApplication.run(CatalogoApplication.class, args);
 		
 	}
+	
+	
 	@Autowired
-	FilmRepository dao;
+	FilmService srvFilm;
+	@Autowired
+	CategoryService srvCategory;
+	@Autowired
+	LanguageService srvLanguage;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
-		dao.findAllBy(FilmShort.class).forEach(item->System.out.println(item.getFilmId() + " " + item.getInfo()));
-		dao.findAllBy(FilmDTO.class).forEach(System.out::println);
+		
+		System.out.println("*******FIILMMSS******");
+		srvFilm.getAll().forEach(item->System.out.println(item.getFilmId() + " " + item.getDescription()));
+		System.out.println("*******CATEGORYY******");
+		srvCategory.getAll().forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
+		System.out.println("*******LANGUAGE******");
+		srvLanguage.getAll().forEach(item->System.out.println(item.getLanguageId() + " " + item.getName()));
+		
 	}
 }
