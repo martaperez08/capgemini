@@ -91,7 +91,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 	//@Temporal(TemporalType.DATE)
 	@Column(name="release_year")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy")
-	
+	@Min(1895)
 	private Short releaseYear;
 
 	@Column(name="rental_duration")
@@ -374,4 +374,5 @@ public class Film extends EntityBase<Film> implements Serializable {
 		Film other = (Film) obj;
 		return filmId == other.filmId;
 	}
+
 }

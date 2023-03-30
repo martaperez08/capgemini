@@ -82,7 +82,7 @@
 		<item key="OmitCallToSuper" value="false"/>
 	</section>
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="548"/>
+		<item key="DIALOG_X_ORIGIN" value="280"/>
 		<item key="DIALOG_Y_ORIGIN" value="11"/>
 		<item key="DIALOG_WIDTH" value="846"/>
 		<item key="DIALOG_HEIGHT" value="1008"/>
@@ -130,6 +130,6 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item key="pageIndex" value="3"/>
+		<item key="pageIndex" value="0"/>
 	</section>
 </section>

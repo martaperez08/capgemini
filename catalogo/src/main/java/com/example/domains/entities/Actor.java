@@ -145,10 +145,6 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 		return "Actor [actorId=" + actorId + ", firstName=" + firstName + ", lastName=" + lastName + ", lastUpdate="
 				+ lastUpdate + "]";
 	}
-	//entidad sabra lo que hay que hace cunado uno reicbe premio NO SOLO DATOS
-	//CADA ENTIDAD TENDRIAMOS QUE HACER LO MISMO AÑADIRS CONSTRUCCTOES
-	//VER Q NO HAYA NULLOS
-	//AÑADIR MEDOTODOS
 
 	public void jubilate() {
 		
@@ -157,5 +153,4 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	public void recibePremio(String premio) {
 		
 	}
-
 }

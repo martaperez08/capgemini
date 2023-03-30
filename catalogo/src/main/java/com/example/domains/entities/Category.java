@@ -28,22 +28,23 @@ public class Category  extends EntityBase<Category> implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="category_id", unique=true, nullable=false)
+	@Column(name="category_id")
 	@JsonProperty("id")
 	private int categoryId;
+
 	@Column(name="last_update", insertable = false, updatable = false)
 	@PastOrPresent
 	@JsonIgnore
 	private Timestamp lastUpdate;
-	
-	////ESPECIFICACIONES DE NEGOCIO 
+
 	@NotBlank
 	@Size(max=25)
-	@JsonProperty("nombre")
+	@JsonProperty("categoria")
 	private String name;
 
 	//bi-directional many-to-one association to FilmCategory
 	@OneToMany(mappedBy="category")
+	@JsonIgnore
 	private List<FilmCategory> filmCategories;
 
 	public Category() {
@@ -54,7 +55,7 @@ public class Category  extends EntityBase<Category> implements Serializable {
 		this.categoryId = categoryId;
 	}
 
-	public Category(@Max(255) int categoryId, String name) {
+	public Category(int categoryId, @NotBlank @Size(max = 25) String name) {
 		super();
 		this.categoryId = categoryId;
 		this.name = name;
@@ -105,6 +106,7 @@ public class Category  extends EntityBase<Category> implements Serializable {
 
 		return filmCategory;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(categoryId);
@@ -126,5 +128,4 @@ public class Category  extends EntityBase<Category> implements Serializable {
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", name=" + name + ", lastUpdate=" + lastUpdate + "]";
 	}
-
 }

@@ -13,6 +13,7 @@ import com.example.domains.contracts.repositories.FilmRepository;
 import com.example.domains.contracts.service.CategoryService;
 import com.example.domains.contracts.service.FilmService;
 import com.example.domains.contracts.service.LanguageService;
+import com.example.domains.entities.Actor;
 import com.example.domains.entities.Film;
 import com.example.domains.entities.Film.Rating;
 import com.example.domains.entities.Language;
@@ -56,9 +57,8 @@ public class CatalogoApplication implements CommandLineRunner {
 		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		
 		System.out.println("*************");
-		/*
-		var peli = new Film("Hola mundo",new Language(2));
-		peli.setRentalDuration((byte)3);
+		var peli = new Film("Hola mundo", new Language(2));
+		/*peli.setRentalDuration((byte)3);
 		peli.setRating(Rating.ADULTS_ONLY);
 		peli.setLength(10);
 		peli.setRentalRate(new BigDecimal(10.0));
@@ -67,10 +67,17 @@ public class CatalogoApplication implements CommandLineRunner {
 		peli.addActor(2);
 		peli.addActor(3);
 		peli.addCategory(2);
-		peli.addCategory(4);
-		srvFilm.add(peli);
-	
-		*/
+		peli.addCategory(4);*/
 		
+		//srvFilm.add(peli);
+		/*peli = srvFilm.getOne(1008).get();
+		peli.removeActor(new Actor(1));
+		peli.removeActor(new Actor(2));
+		peli.addActor(4);
+		peli.removeCategory(peli.getCategories().get(0));
+		peli.addCategory(1);
+		peli.setTitle("Adios mundo");*/
+		//srvFilm.modify(peli);
+//		
 	}
 }
