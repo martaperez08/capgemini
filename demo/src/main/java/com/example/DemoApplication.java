@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.example.domains.contracts.repositories.ActorRepository;
+import com.example.domains.contracts.service.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.ActorShort;
@@ -49,6 +50,9 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	ActorRepository dao;
 
+	// ahora el servicio se encarga
+	//@Autowired
+	//ActorService srv;
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
@@ -93,7 +97,7 @@ public class DemoApplication implements CommandLineRunner {
 		//rslt.getContent().forEach(System.out::println);
 		
 		//VERTICAL
-		dao.findAllBy(ActorShort.class).forEach(item->System.out.println(item.getActorId() + " " + item.getNombre()));
+		//dao.findAllBy(ActorShort.class).forEach(item->System.out.println(item.getActorId() + " " + item.getNombre()));
 		//dao.findAllBy(ActorDTO.class).forEach(System.out::println);
 		
 		
@@ -111,17 +115,45 @@ public class DemoApplication implements CommandLineRunner {
 //	}
 		
 		//JASCKSOSOON
-		ObjectMapper objectMapper = new ObjectMapper();
-		dao.findAllBy(ActorDTO.class).stream().map(
-				item->{
-					try {
-						return objectMapper.writeValueAsString(item);
-					} catch (Exception e) {
-						return "";
-					}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//		ObjectMapper objectMapper = new ObjectMapper();
+		//		dao.findAllBy(ActorDTO.class).stream().map(
+		//				item->{
+		////					try {
+		//					return objectMapper.writeValueAsString(item);
+		//				} catch (Exception e) {
+		//				return "";
+		//			}
 					
 					
 					
-				}).forEach(System.out::println);
+		//		}).forEach(System.out::println);
+		
+		//srv.add(new Actor(1, "KK", "KKK"));
 	}
 }
