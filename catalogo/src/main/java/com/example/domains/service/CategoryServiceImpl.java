@@ -1,8 +1,10 @@
 package com.example.domains.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.dialect.spi.DatabaseMetaDataDialectResolutionInfoAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -86,6 +88,14 @@ public class CategoryServiceImpl implements CategoryService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Category> orderCategories(String sufijo) {
+		
+		return  dao.findTop5ByNameStartingWithOrderByNameDesc(sufijo);
+	}
+
+	
 
 	
 	

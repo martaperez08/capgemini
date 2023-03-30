@@ -11,7 +11,8 @@ import org.springframework.data.repository.query.Param;
 import com.example.domains.core.repositories.contracts.RepositoryWithProjections;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorShort;
-
+//dto de aplicacion
+//defincion repositodio en el domain
 public interface ActorRepository extends JpaRepository<Actor, Integer>, JpaSpecificationExecutor<Actor>, RepositoryWithProjections {
 
 	// cuidado con equivocarse nombre metodos

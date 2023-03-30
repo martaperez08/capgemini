@@ -13,7 +13,10 @@ import com.example.domains.contracts.service.LanguageService;
 import com.example.domains.entities.dtos.FilmDTO;
 import com.example.domains.entities.dtos.FilmShort;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootApplication
+@Transactional
 public class CatalogoApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
@@ -29,6 +32,9 @@ public class CatalogoApplication implements CommandLineRunner {
 	@Autowired
 	LanguageService srvLanguage;
 	
+	@Autowired
+	FilmRepository daoFilmRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
@@ -39,6 +45,8 @@ public class CatalogoApplication implements CommandLineRunner {
 		srvCategory.getAll().forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		System.out.println("*******LANGUAGE******");
 		srvLanguage.getAll().forEach(item->System.out.println(item.getLanguageId() + " " + item.getName()));
+		System.out.println("*******SQL ESPECIFICAS******");
+		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		
 	}
 }
