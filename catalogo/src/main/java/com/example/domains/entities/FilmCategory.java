@@ -34,6 +34,16 @@ public class FilmCategory implements Serializable {
 
 	public FilmCategory() {
 	}
+	
+	
+
+	public FilmCategory( Film film, Category category) {
+		this.film = film;
+		this.category = category;
+		
+	}
+
+
 
 	public FilmCategoryPK getId() {
 		return this.id;

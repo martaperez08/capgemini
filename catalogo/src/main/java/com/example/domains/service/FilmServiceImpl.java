@@ -3,6 +3,8 @@ package com.example.domains.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.lang.model.element.Element;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,9 @@ import com.example.domains.entities.Film;
 import com.example.exception.DuplicateKeyException;
 import com.example.exception.InvalidDataException;
 import com.example.exception.NotFoundException;
+
+import jakarta.transaction.Transactional;
+import lombok.var;
 @Service
 public class FilmServiceImpl implements FilmService {
 
@@ -60,10 +65,21 @@ public class FilmServiceImpl implements FilmService {
 	}
 
 	@Override
+	@Transactional
 	public Film add(Film item) throws DuplicateKeyException, InvalidDataException {
 		if(item == null) throw  new InvalidDataException("No puede ser nulo");
 		if(item.isInvalid()) throw  new InvalidDataException(item.getErrorsMessage());
 		if(dao.existsById(item.getFilmId())) throw  new DuplicateKeyException(item.getErrorsMessage());
+		// problema de temporalidad por la primera key 
+		
+		var actores = item.getActors();
+		var categorias = item.getCategories();
+		item.clearActors();
+		item.clearCategories();
+		var newItem = dao.save(item);
+		actores.forEach(ele-> newItem.addActor(ele));
+		categorias.forEach(ele-> newItem.addCategory(ele));
+		
 		return dao.save(item);
 	}
 
