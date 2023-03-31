@@ -56,6 +56,10 @@ public class CatalogoApplication implements CommandLineRunner {
 		System.out.println("*******SQL ESPECIFICAS******");
 		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		
+		
+		
+		
+		
 		System.out.println("*************");
 		var peli = new Film("Hola mundo", new Language(2));
 		/*peli.setRentalDuration((byte)3);

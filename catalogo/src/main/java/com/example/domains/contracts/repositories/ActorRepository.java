@@ -13,9 +13,5 @@ import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorShort;
 
 public interface ActorRepository extends JpaRepository<Actor, Integer>, JpaSpecificationExecutor<Actor>, RepositoryWithProjections {
-
-
 	<T> List<T> findAllBy(Class<T> type);
-	
-	
 }
