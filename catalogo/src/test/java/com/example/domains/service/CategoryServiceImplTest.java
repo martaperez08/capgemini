@@ -53,7 +53,7 @@ class CategoryServiceImplTest {
 						new Category(3, "Accion")));
         List<Category> nuevaListaCategories= new ArrayList<>();
         
-        nuevaListaCategories= daoCategoryRepository.findTop5ByNameStartingWithOrderByNameDesc("A");
+       // nuevaListaCategories= daoCategoryRepository.findTop5ByNameStartingWithOrderByNameDesc("A");
         		
 		//when(daoCategoryRepository.findAll()).thenReturn(nuevaListaCategories);
 		//var rslt = categoryService.getAll();
