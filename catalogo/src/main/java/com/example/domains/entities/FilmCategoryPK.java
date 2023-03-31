@@ -10,7 +10,10 @@ import jakarta.persistence.*;
  */
 @Embeddable
 public class FilmCategoryPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	
+	 	//--ATRUBUTOOS
+	
+		//default serial version id, required for serializable classes.
 		private static final long serialVersionUID = 1L;
 
 		@Column(name="film_id", insertable=false, updatable=false)
@@ -18,13 +21,15 @@ public class FilmCategoryPK implements Serializable {
 
 		@Column(name="category_id", insertable=false, updatable=false)
 		private int categoryId;
-
+		
+		//--- CONSTRUCORES
 		public FilmCategoryPK() {
 		}
 		public FilmCategoryPK(int filmId, int categoryId) {
 			this.filmId = filmId;
 			this.categoryId = categoryId;
 		}
+		//--GETTERS AND SETTERS
 		public int getFilmId() {
 			return this.filmId;
 		}

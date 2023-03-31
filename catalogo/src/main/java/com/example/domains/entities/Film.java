@@ -3,6 +3,8 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.var;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import com.example.domains.core.entities.EntityBase;
 @Table(name="film")
 @NamedQuery(name="Film.findAll", query="SELECT f FROM Film f")
 public class Film extends EntityBase<Film> implements Serializable {
+	
+	//--ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 	public static enum Rating {
 	    GENERAL_AUDIENCES("G"),
@@ -134,6 +138,9 @@ public class Film extends EntityBase<Film> implements Serializable {
 	@JsonIgnore
 	private List<FilmCategory> filmCategories = new ArrayList<FilmCategory>();
 
+	
+	//-----CONSTRUCTORES
+	
 	public Film() {
 	}
 
@@ -162,6 +169,9 @@ public class Film extends EntityBase<Film> implements Serializable {
 		this.language = language;
 	}
 
+	
+	//---- SETTER AND GETTERS
+	
 	public int getFilmId() {
 		return this.filmId;
 	}
@@ -262,7 +272,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 		this.languageVO = languageVO;
 	}
 
-
+	// GESTIONAMOS LOS ACTORES
 	public List<Actor> getActors() {
 		return this.filmActors.stream().map(item -> item.getActor()).toList();
 	}
@@ -283,7 +293,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 		filmActors.remove(filmActor.get());
 	}
 
-	
+	// GESTIONAMOS FILMACTOR
 	public List<FilmActor> getFilmActors() {
 		return this.filmActors;
 	}
@@ -311,6 +321,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 		return filmActor;
 	}
 
+	 // GESTIONAMOS CATEGORY 
 	public List<Category> getCategories() {
 		return this.filmCategories.stream().map(item -> item.getCategory()).toList();
 	}
@@ -331,6 +342,8 @@ public class Film extends EntityBase<Film> implements Serializable {
 		filmCategories.remove(filmCategory.get());
 	}
 
+	// GESTIONAMOS FILMCATEGORY
+	
 	public List<FilmCategory> getFilmCategories() {
 		return this.filmCategories;
 	}
@@ -373,6 +386,42 @@ public class Film extends EntityBase<Film> implements Serializable {
 			return false;
 		Film other = (Film) obj;
 		return filmId == other.filmId;
+	}
+	
+	
+	
+	public Film mergeFilm (Film target) {
+		
+		
+		target.title= title;
+		target.description= description;
+		target.releaseYear= releaseYear;
+		target.rating= rating;
+		target.releaseYear= releaseYear;
+		target.rentalDuration= rentalDuration;
+		target.rentalRate= rentalRate;
+		target.replacementCost= replacementCost;
+		target.language= language;
+		target.languageVO= languageVO;
+		
+		// Borra los actores que sobran
+		target.getActors().stream()
+			.filter(old -> !getActors().contains(old))
+			.forEach(old -> target.removeActor(old));
+		// Añade los actores que faltan
+		getActors().stream()
+			.filter(nue -> !target.getActors().contains(nue))
+			.forEach(nue -> target.addActor(nue));
+		// Añade los categorias que faltan
+		target.getCategories().stream()
+			.filter(old -> getCategories().contains(old))
+			.forEach(old -> target.removeCategory(old));
+		// Borra los categorias que sobran
+		getCategories().stream()
+			.filter(nue -> !target.getCategories().contains(nue))
+			.forEach(nue -> target.addCategory(nue));
+		
+		return target;
 	}
 
 }

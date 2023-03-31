@@ -14,6 +14,9 @@ import java.sql.Timestamp;
 @Table(name="film_actor")
 @NamedQuery(name="FilmActor.findAll", query="SELECT f FROM FilmActor f")
 public class FilmActor implements Serializable {
+	
+	
+	// ---ATRIBUTOOS
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -31,7 +34,9 @@ public class FilmActor implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="film_id", insertable=false, updatable=false)
 	private Film film;
-
+	
+	//--- CONSTRUCOTRES
+	
 	public FilmActor() {
 	}
 
@@ -41,7 +46,8 @@ public class FilmActor implements Serializable {
 		this.actor = actor;
 		setId(new FilmActorPK(film.getFilmId(), actor.getActorId()));
 	}
-
+	//---GETTER AND SETTER
+	
 	public FilmActorPK getId() {
 		return this.id;
 	}

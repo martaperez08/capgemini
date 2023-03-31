@@ -24,6 +24,9 @@ import com.example.domains.core.entities.EntityBase;
 @Table(name="language")
 @NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
 public class Language extends EntityBase<Language> implements Serializable {
+	
+	
+	//---ATRIBUTOS
 	private static final long serialVersionUID = 1L;
     public static class Partial {}
     public static class Complete extends Partial {}
@@ -56,7 +59,8 @@ public class Language extends EntityBase<Language> implements Serializable {
 	@OneToMany(mappedBy="languageVO")
 	@JsonIgnore
 	private List<Film> filmsVO;
-
+	
+	//--CONSTRUCTORES
 	public Language() {
 	}
 
@@ -69,6 +73,8 @@ public class Language extends EntityBase<Language> implements Serializable {
 		this.languageId = languageId;
 		this.name = name;
 	}
+	
+	//--GETTER ANS SETTER
 
 	public int getLanguageId() {
 		return this.languageId;
@@ -102,6 +108,8 @@ public class Language extends EntityBase<Language> implements Serializable {
 		this.films = films;
 	}
 
+	
+	//---- GESTION DE FILM
 	public Film addFilm(Film film) {
 		getFilms().add(film);
 		film.setLanguage(this);
@@ -116,6 +124,9 @@ public class Language extends EntityBase<Language> implements Serializable {
 		return film;
 	}
 
+	
+	//-- GESTION DE  FILMSVO
+	
 	public List<Film> getFilmsVO() {
 		return this.filmsVO;
 	}

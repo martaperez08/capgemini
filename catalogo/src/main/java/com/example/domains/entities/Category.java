@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
 public class Category  extends EntityBase<Category> implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	//----ATRIBUTOS
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,7 +48,9 @@ public class Category  extends EntityBase<Category> implements Serializable {
 	@OneToMany(mappedBy="category")
 	@JsonIgnore
 	private List<FilmCategory> filmCategories;
-
+	
+	//-- CONSTRUCTORES
+	
 	public Category() {
 	}
 
@@ -60,6 +64,7 @@ public class Category  extends EntityBase<Category> implements Serializable {
 		this.categoryId = categoryId;
 		this.name = name;
 	}
+	// GETTERS AND SETTERS
 
 	public int getCategoryId() {
 		return this.categoryId;
@@ -93,6 +98,9 @@ public class Category  extends EntityBase<Category> implements Serializable {
 		this.filmCategories = filmCategories;
 	}
 
+	
+	// ----FILMCATEGORY
+	
 	public FilmCategory addFilmCategory(FilmCategory filmCategory) {
 		getFilmCategories().add(filmCategory);
 		filmCategory.setCategory(this);

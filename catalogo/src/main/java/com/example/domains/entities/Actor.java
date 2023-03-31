@@ -29,6 +29,7 @@ import com.example.domains.core.entities.*;
 public class Actor extends EntityBase<Actor> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// -----ATRIBUTOOS----
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="actor_id", unique=true, nullable=false)
@@ -37,7 +38,6 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	@Column(name="first_name", nullable=false, length=45)
 	@NotBlank
 	@Size(max=45, min=2)
-//	@NIF
 	private String firstName;
 
 	@Column(name="last_name", nullable=false, length=45)
@@ -53,6 +53,9 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	@OneToMany(mappedBy="actor", fetch = FetchType.LAZY)
 	private List<FilmActor> filmActors = new ArrayList<>();
 
+	
+	//------CONSTRUCTORES
+	
 	public Actor() {
 	}
 	
@@ -68,7 +71,8 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 		this.lastName = lastName;
 	}
 
-
+	//---- GETTER AND SETTERS
+	
 	public int getActorId() {
 		return this.actorId;
 	}
@@ -109,6 +113,10 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 		this.filmActors = filmActors;
 	}
 
+	
+	
+	//--- FILMACTOR
+	
 	public FilmActor addFilmActor(FilmActor filmActor) {
 		getFilmActors().add(filmActor);
 		filmActor.setActor(this);

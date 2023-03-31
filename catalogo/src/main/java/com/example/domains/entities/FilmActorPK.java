@@ -10,7 +10,10 @@ import jakarta.persistence.*;
  */
 @Embeddable
 public class FilmActorPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	
+		//--ATRIBUTOS
+	
+		//default serial version id, required for serializable classes.
 		private static final long serialVersionUID = 1L;
 
 		@Column(name="actor_id", insertable=false, updatable=false)
@@ -18,13 +21,16 @@ public class FilmActorPK implements Serializable {
 
 		@Column(name="film_id", insertable=false, updatable=false)
 		private int filmId;
-
+		
+		//---CONSTRUCORES
 		public FilmActorPK() {
 		}
 		public FilmActorPK(int filmId, int actorId) {
 			this.actorId = actorId;
 			this.filmId = filmId;
 		}
+		//---GETTER AND SETTER
+		
 		public int getActorId() {
 			return this.actorId;
 		}

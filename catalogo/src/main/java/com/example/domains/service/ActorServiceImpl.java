@@ -25,9 +25,7 @@ public class ActorServiceImpl implements ActorService {
 
 	@Override
 	public <T> List<T> getByProjection(Class<T> type) {
-	// propago lo q me hayan pasado
-		
-		return dao.findAllBy(type);
+			return dao.findAllBy(type);
 	}
 
 	@Override
