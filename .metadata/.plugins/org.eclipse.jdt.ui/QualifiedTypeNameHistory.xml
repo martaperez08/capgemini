@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="com.example.exception.DuplicateKeyException"/>
-    <fullyQualifiedTypeName name="com.example.exception.NotFoundException"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.CommandLineRunner"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.dtos.FilmShort"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.dtos.FilmDTO"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.Value"/>
@@ -28,10 +20,8 @@
     <fullyQualifiedTypeName name="javax.lang.model.element.Element"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.Language"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Film.Rating"/>
     <fullyQualifiedTypeName name="org.apache.catalina.Pipeline"/>
     <fullyQualifiedTypeName name="java.math.BigDecimal"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Film"/>
     <fullyQualifiedTypeName name="org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor"/>
     <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
@@ -45,7 +35,6 @@
     <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
     <fullyQualifiedTypeName name="com.example.exception.InvalidDataException"/>
     <fullyQualifiedTypeName name="com.example.aplication.services.CatalogoService"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.FilmService"/>
@@ -56,8 +45,19 @@
     <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.CategoryRepository"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.CategoryService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="lombok.var"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.Category"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="lombok.var"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.CsvSource"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.params.ParameterizedTest"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Film"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.EnumSource"/>
+    <fullyQualifiedTypeName name="org.h2.server.web.WebServer"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.protocol.Message"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Film.Rating"/>
 </qualifiedTypeNameHistroy>
