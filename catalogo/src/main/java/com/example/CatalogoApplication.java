@@ -56,32 +56,5 @@ public class CatalogoApplication implements CommandLineRunner {
 		System.out.println("*******SQL ESPECIFICAS******");
 		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		
-		System.out.println(srvCategory.orderCategories("A").size());
-		
-		
-		
-		System.out.println("*************");
-		var peli = new Film("Hola mundo", new Language(2));
-		/*peli.setRentalDuration((byte)3);
-		peli.setRating(Rating.ADULTS_ONLY);
-		peli.setLength(10);
-		peli.setRentalRate(new BigDecimal(10.0));
-		peli.setReplacementCost(new BigDecimal(10.0));
-		peli.addActor(1);
-		peli.addActor(2);
-		peli.addActor(3);
-		peli.addCategory(2);
-		peli.addCategory(4);*/
-		
-		//srvFilm.add(peli);
-		/*peli = srvFilm.getOne(1008).get();
-		peli.removeActor(new Actor(1));
-		peli.removeActor(new Actor(2));
-		peli.addActor(4);
-		peli.removeCategory(peli.getCategories().get(0));
-		peli.addCategory(1);
-		peli.setTitle("Adios mundo");*/
-		//srvFilm.modify(peli);
-//		
 	}
 }

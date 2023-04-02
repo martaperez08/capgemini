@@ -154,11 +154,5 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 				+ lastUpdate + "]";
 	}
 
-	public void jubilate() {
-		
-	}
 	
-	public void recibePremio(String premio) {
-		
-	}
 }

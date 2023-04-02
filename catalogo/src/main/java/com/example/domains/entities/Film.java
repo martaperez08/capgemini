@@ -395,10 +395,8 @@ public class Film extends EntityBase<Film> implements Serializable {
 	}
 	
 	
-	
+	//SOLUCIONAR PORBLEMA DE TEMPORALIDAD
 	public Film mergeFilm (Film target) {
-		
-		
 		target.title= title;
 		target.description= description;
 		target.releaseYear= releaseYear;
@@ -410,19 +408,23 @@ public class Film extends EntityBase<Film> implements Serializable {
 		target.language= language;
 		target.languageVO= languageVO;
 		
-		// Borra los actores que sobran
+		//1.Borramos los actores que sobran 
+		//2.Añadimos los actores que faltan
 		target.getActors().stream()
 			.filter(old -> !getActors().contains(old))
 			.forEach(old -> target.removeActor(old));
-		// Añade los actores que faltan
+		
 		getActors().stream()
 			.filter(nue -> !target.getActors().contains(nue))
 			.forEach(nue -> target.addActor(nue));
-		// Añade los categorias que faltan
+		
+		//1.Borramos las categorias que sobran 
+		//2.Añadimos los categorias que faltan
+		
 		target.getCategories().stream()
 			.filter(old -> getCategories().contains(old))
 			.forEach(old -> target.removeCategory(old));
-		// Borra los categorias que sobran
+		
 		getCategories().stream()
 			.filter(nue -> !target.getCategories().contains(nue))
 			.forEach(nue -> target.addCategory(nue));
