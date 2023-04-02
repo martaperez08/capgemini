@@ -15,43 +15,41 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.contracts.repositories.FilmRepository;
-import com.example.domains.contracts.service.ActorService;
+import com.example.domains.contracts.repositories.LanguageRepository;
 import com.example.domains.contracts.service.FilmService;
-import com.example.domains.entities.Actor;
+import com.example.domains.contracts.service.LanguageService;
 import com.example.domains.entities.Film;
-
+import com.example.domains.entities.Language;
 
 @DataJpaTest
 @ComponentScan(basePackages = "com.example")
-class FilmServiceImplTest {
+class LanguageServiceImplTest {
 
 
 	@MockBean
-	FilmRepository daoFilmRepository;
+	LanguageRepository daoLanguageRepository;
 
 	@Autowired
-	FilmService srv;
+	LanguageService srv;
 
 	@Test
 	void testGetAll() {
-		List<Film> lista = new ArrayList<>(Arrays.asList(new Film(1, "Aventuras de marte"),
-				new Film(2, "Saturno")
+		List<Language> lista = new ArrayList<>(Arrays.asList(new Language(0, "Chino"),
+				new Language(1, "Castellano")
 				));
 
-		when(daoFilmRepository.findAll()).thenReturn(lista);
+		when(daoLanguageRepository.findAll()).thenReturn(lista);
 		var rslt = srv.getAll();
 		assertThat(rslt.size()).isEqualTo(2);
 	}
 
 	@Test
 	void testGetOneValid() {
-		List<Film> lista = new ArrayList<>(Arrays.asList(new Film(1, "Aventuras de marte"),
-				new Film(2, "Saturno")
+		List<Language> lista = new ArrayList<>(Arrays.asList(new Language(0, "Chino"),
+				new Language(1, "Castellano")
 				));
-
-		when(daoFilmRepository.findById(1)).thenReturn(Optional.of( new Film (1, "Aventuras de marte")));
+		when(daoLanguageRepository.findById(1)).thenReturn(Optional.of( new Language(0, "Chino")));
 		var rslt = srv.getOne(1);
 		assertThat(rslt.isPresent()).isTrue();
 
@@ -59,7 +57,7 @@ class FilmServiceImplTest {
 
 	@Test
 	void testGetOneInvalid() {
-		when(daoFilmRepository.findById(1)).thenReturn(Optional.empty());
+		when(daoLanguageRepository.findById(1)).thenReturn(Optional.empty());
 		var rslt = srv.getOne(1);
 		assertThat(rslt.isEmpty()).isTrue();
 		
@@ -69,10 +67,10 @@ class FilmServiceImplTest {
 
 	@Test
 	void testDeleteById() {
-		List<Film> lista = new ArrayList<>(Arrays.asList(new Film(1, "Aventuras de marte"),
-				new Film(2, "Saturno")
+		List<Language> lista = new ArrayList<>(Arrays.asList(new Language(0, "Chino"),
+				new Language(1, "Castellano")
 				));
-		when(daoFilmRepository.findById(1)).thenReturn(Optional.of( new Film (1, "Aventuras de marte")));
+		when(daoLanguageRepository.findById(1)).thenReturn(Optional.of( new Language(0, "Chino")));
 		srv.deleteById(1);;
 		assertThat(srv.getOne(1).isPresent()).isTrue();
 	}
