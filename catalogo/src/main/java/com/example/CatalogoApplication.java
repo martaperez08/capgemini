@@ -56,7 +56,7 @@ public class CatalogoApplication implements CommandLineRunner {
 		System.out.println("*******SQL ESPECIFICAS******");
 		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
 		
-		
+		System.out.println(srvCategory.orderCategories("A").size());
 		
 		
 		

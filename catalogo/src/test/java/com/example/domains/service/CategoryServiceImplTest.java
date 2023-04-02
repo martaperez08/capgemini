@@ -21,6 +21,8 @@ import com.example.domains.contracts.service.CategoryService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
 
+import lombok.var;
+
 
 @DataJpaTest
 @ComponentScan(basePackages = "com.example")
@@ -39,25 +41,29 @@ class CategoryServiceImplTest {
 		        Arrays.asList(new Category(1, "Miedo"),
 						new Category(2, "Aventura"),
 						new Category(3, "Accion")));
-
+		
 		when(daoCategoryRepository.findAll()).thenReturn(lista);
 		var rslt = categoryService.getAll();
 		assertThat(rslt.size()).isEqualTo(3);
 	}
+	
+	
 	@Test
 	void validacionOrderCategory() {
-
+		
 		List<Category> lista = new ArrayList<>(
 		        Arrays.asList(new Category(1, "Miedo"),
 						new Category(2, "Aventura"),
 						new Category(3, "Accion")));
-        List<Category> nuevaListaCategories= new ArrayList<>();
-        
-       // nuevaListaCategories= daoCategoryRepository.findTop5ByNameStartingWithOrderByNameDesc("A");
-        		
-		//when(daoCategoryRepository.findAll()).thenReturn(nuevaListaCategories);
-		//var rslt = categoryService.getAll();
-		assertThat(nuevaListaCategories.size()).isEqualTo(2);
+
+		List<Category> listaN = new ArrayList<>(
+		        Arrays.asList(
+						new Category(2, "Aventura"),
+						new Category(3, "Accion")));
+
+		when(daoCategoryRepository.findTop5ByNameStartingWithOrderByNameDesc("A")).thenReturn(listaN);
+		var rslt = categoryService.orderCategories("A");
+		assertThat(rslt.size()).isEqualTo(2);
 	}
 	
 	@Test
