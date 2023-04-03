@@ -47,7 +47,7 @@ public class CatalogoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
 		
-		System.out.println("*******FIILMMSS******");
+		System.out.println("*******FIILMMSS*******");
 		srvFilm.getAll().forEach(item->System.out.println(item.getFilmId() + " " + item.getDescription()));
 		System.out.println("*******CATEGORYY******");
 		srvCategory.getAll().forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
