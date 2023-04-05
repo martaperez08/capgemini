@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\CURSO\ProyectoEclipse\demo-web"/>
 			<item value="C:\CURSO\ProyectoEclipse\Ejemplo1"/>
 			<item value="C:\CURSO\ProyectoEclipse\demo-maven"/>
 		</list>
