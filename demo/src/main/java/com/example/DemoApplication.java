@@ -47,8 +47,8 @@ public class DemoApplication implements CommandLineRunner {
 	// que pasa si dos classes tiene dos @Repositorio no funciona pero podemos
 	// solucionarlo 1 tener una nica calse o marcar primario añadiendo @Primary
 
-	@Autowired
-	ActorRepository dao;
+//	@Autowired
+//	ActorRepository dao;
 
 	// ahora el servicio se encarga
 	//@Autowired

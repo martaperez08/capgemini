@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,28 +25,41 @@ import com.example.domains.contracts.repositories.ActorRepository;
 import com.example.domains.contracts.service.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.ActorShort;
+import com.example.domains.entities.dtos.ElementoDTO;
 import com.example.exception.BadRequestException;
 import com.example.exception.DuplicateKeyException;
 import com.example.exception.InvalidDataException;
 import com.example.exception.NotFoundException;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Pageable;
 
+//atiende a las rutas, class final la que van a consumir 
 @RestController
 @RequestMapping(path = { "/api/actores/v1", "/api/actors" })
-//atiende a las rutas, class final la que van a consumir 
 public class ActorResource {
-@Autowired
+	@Autowired
 	private ActorService srv;
 
 	@GetMapping
-	public List<ActorDTO> getAll() {
-		return srv.getByProjection(ActorDTO.class);
+	public List<ActorShort> getAll(@RequestParam(required = false) String sort) {
+		// nos han enviado el parametro
+		if (sort != null)
+			return (List<ActorShort>) srv.getByProjection(Sort.by(sort), ActorShort.class);
+		return srv.getByProjection(ActorShort.class);
 	}
 
+	@GetMapping(params = "page")
+	public Page<ActorShort> getAll(Pageable pageable) {
+		
+		return srv.getByProjection(pageable, ActorShort.class);
+	}
+	
 	@GetMapping(path = "/{id}")
 	public ActorDTO getOne(@PathVariable int id) throws NotFoundException {
 		var ite = srv.getOne(id);
@@ -54,12 +70,24 @@ public class ActorResource {
 		return ActorDTO.from(ite.get());
 	}
 
+	
+	@GetMapping(path = "/{id}/pelis")
+	@Transactional
+	public List<ElementoDTO<Integer, String>> getPelis(@PathVariable int id) throws NotFoundException {
+		var item = srv.getOne(id);
+		if(item.isEmpty())
+			throw new NotFoundException();
+		return item.get().getFilmActors().stream()
+				.map(o -> new ElementoDTO<>(o.getFilm().getFilmId(), o.getFilm().getTitle()))
+				.toList();
+	}
+	
 	@PostMapping
 	public ResponseEntity<Object> create(@Valid @RequestBody ActorDTO item)
 			throws BadRequestException, DuplicateKeyException, InvalidDataException {
-		// trabajamos con entitats ya hizo funcio trasladar info dto 
+		// trabajamos con entitats ya hizo funcio trasladar info dto
 		var actor = ActorDTO.from(item);
-		var newItem=srv.add(actor);
+		var newItem = srv.add(actor);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newItem.getActorId()).toUri();
 		return ResponseEntity.created(location).build();
@@ -71,8 +99,8 @@ public class ActorResource {
 			throws BadRequestException, NotFoundException, InvalidDataException {
 		if (id != item.getActorId())
 			throw new BadRequestException("no coinciden los identifica");
-			srv.modify(ActorDTO.from(item));
-				
+		srv.modify(ActorDTO.from(item));
+
 	}
 
 	@DeleteMapping("/{id}")
