@@ -10,6 +10,9 @@ import lombok.Value;
 @Value
 
 public class FilmDTO {
+	
+	
+	// faltan propiedades 
 	@JsonProperty("id")
 	private int filmId;
 	@JsonProperty("descr")
@@ -20,5 +23,7 @@ public class FilmDTO {
 		return new FilmDTO(target.getFilmId(), target.getDescription());
 	}
 	
-
+	public static Film from(FilmDTO target) {
+		return new Film(target.getFilmId(), target.getDescription());
+	}
 }

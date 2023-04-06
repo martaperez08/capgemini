@@ -33,28 +33,28 @@ public class CatalogoApplication implements CommandLineRunner {
 	}
 	
 	
-	@Autowired
-	FilmService srvFilm;
-	@Autowired
-	CategoryService srvCategory;																																		
-	@Autowired
-	LanguageService srvLanguage;
-	
-	@Autowired
-	FilmRepository daoFilmRepository;
+//	@Autowired
+//	FilmService srvFilm;
+//	@Autowired
+//	CategoryService srvCategory;																																		
+//	@Autowired
+//	LanguageService srvLanguage;
+//	
+//	@Autowired
+//	FilmRepository daoFilmRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Aplicación arrancada");
-		
-		System.out.println("*******FIILMMSS*******");
-		srvFilm.getAll().forEach(item->System.out.println(item.getFilmId() + " " + item.getDescription()));
-		System.out.println("*******CATEGORYY******");
-		srvCategory.getAll().forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
-		System.out.println("*******LANGUAGE******");
-		srvLanguage.getAll().forEach(item->System.out.println(item.getLanguageId() + " " + item.getName()));
-		System.out.println("*******SQL ESPECIFICAS******");
-		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
-		
+//		
+//		System.out.println("*******FIILMMSS*******");
+//		srvFilm.getAll().forEach(item->System.out.println(item.getFilmId() + " " + item.getDescription()));
+//		System.out.println("*******CATEGORYY******");
+//		srvCategory.getAll().forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
+//		System.out.println("*******LANGUAGE******");
+//		srvLanguage.getAll().forEach(item->System.out.println(item.getLanguageId() + " " + item.getName()));
+//		System.out.println("*******SQL ESPECIFICAS******");
+//		srvCategory.orderCategories("A").forEach(item->System.out.println(item.getCategoryId() + " " + item.getName()));
+//		
 	}
 }

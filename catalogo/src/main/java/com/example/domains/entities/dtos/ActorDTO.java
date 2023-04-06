@@ -11,7 +11,6 @@ import lombok.Value;
 
 public class ActorDTO {
 	
-
 	@JsonProperty("id")
 	private int actorId;
 	@JsonProperty("nombre")

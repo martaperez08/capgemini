@@ -79,4 +79,17 @@ class CategoryServiceImplTest {
 		
 	}
 
+
+	@Test
+	void testDeleteById() {
+		List<Category> lista = new ArrayList<>(
+		        Arrays.asList(new Category(1, "Miedo"),
+						new Category(2, "Aventura"),
+						new Category(3, "Accion")));
+
+
+		when(daoCategoryRepository.findById(1)).thenReturn(Optional.of(new Category(1, "Miedo")));
+		categoryService.deleteById(1);;
+		assertThat(categoryService.getOne(1).isPresent()).isTrue();
+	}
 }
