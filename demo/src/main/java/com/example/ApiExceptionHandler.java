@@ -59,9 +59,9 @@ public class ApiExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({InvalidDataException.class})
+    @ExceptionHandler({ InvalidDataException.class })
     @ResponseBody
-    public ErrorMessage invalidDataErrorMessage (Exception exception) {
-        return new ErrorMessage("invalid", exception.getMessage());
+    public ErrorMessage invalidData(Exception exception) {
+        return new ErrorMessage("Invalid data", exception.getMessage());
     }
 }

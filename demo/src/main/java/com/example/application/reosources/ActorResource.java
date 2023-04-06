@@ -36,7 +36,7 @@ import org.springframework.http.HttpStatus;
 @RequestMapping(path = { "/api/actores/v1", "/api/actors" })
 //atiende a las rutas, class final la que van a consumir 
 public class ActorResource {
-
+@Autowired
 	private ActorService srv;
 
 	@GetMapping
