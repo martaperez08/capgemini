@@ -112,7 +112,7 @@ class CategoryResourceTest {
 		var ele = new Category(id, "Miedo");
 		when(srv.getOne(id)).thenReturn(Optional.empty());
 		mockMvc.perform(get("/api/category/v2/{id}", id)).andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.title").value("Not Found")).andDo(print());
+				.andExpect(jsonPath("$.nombre").value("Not Found")).andDo(print());
 	}
 
 	@Test

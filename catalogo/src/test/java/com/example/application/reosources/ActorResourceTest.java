@@ -97,7 +97,7 @@ class ActorResourceTest {
 		var ele = new Actor(id, "Pepito", "Grillo");
 		when(srv.getOne(id)).thenReturn(Optional.empty());
 		mockMvc.perform(get("/api/actores/v1/{id}", id)).andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.title").value("Not Found")).andDo(print());
+				.andExpect(jsonPath("$.id").value("Not Found")).andDo(print());
 	}
 
 	@Test

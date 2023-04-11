@@ -10,11 +10,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.h2.store.FileLockMethod;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +34,8 @@ import com.example.domains.contracts.service.FilmService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
 import com.example.domains.entities.Film;
+import com.example.domains.entities.Language;
+import com.example.domains.entities.Film.Rating;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.ActorShort;
 import com.example.domains.entities.dtos.FilmDTO;
@@ -107,11 +111,15 @@ class FilmResourceTest {
 	@Test
 	void testGetOne() throws Exception {
 		int id = 1;
-		var ele = new Film(id, "lallalaal");
+		var ele = new Film(id, "lallalaal",3, Film.Rating.ADULTS_ONLY, new Short((short) 2), (byte)1, new BigDecimal(10.0),
+				new BigDecimal(10.0),"fff", new Language(2), new Language(2));
 		when(srv.getOne(id)).thenReturn(Optional.of(ele));
 		mockMvc.perform(get("/api/film/v1/{id}", id)).andExpect(status().isOk()).andExpect(jsonPath("$.id").value(id))
 				.andExpect(jsonPath("$.descr").value(ele.getDescription())).andDo(print());
 	}
+	
+	
+
 
 	@Test
 	void testGetOne404() throws Exception {
@@ -124,8 +132,8 @@ class FilmResourceTest {
 
 	@Test
 	void testCreate() throws Exception {
-		int id = 1;
-		var ele = new Film(id, "Pepito");
+		int id = 1;var ele = new Film(id, "lallalaal",3, Film.Rating.ADULTS_ONLY, new Short((short) 2), (byte)1, new BigDecimal(10.0),
+				new BigDecimal(10.0),"fff", new Language(2), new Language(2));
 		when(srv.add(ele)).thenReturn(ele);
 		mockMvc.perform(post("/api/film/v1/").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(FilmDTO.from(ele)))).andExpect(status().isCreated())
