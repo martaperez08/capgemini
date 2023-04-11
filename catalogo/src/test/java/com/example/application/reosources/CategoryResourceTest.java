@@ -119,7 +119,6 @@ class CategoryResourceTest {
 			.andExpect(status().isOk())
 	        .andExpect(jsonPath("$.id").value(id))
 	        .andExpect(jsonPath("$.nombre").value(ele.getName()))
-	        
 	        .andDo(print());
 	}
 	@Test

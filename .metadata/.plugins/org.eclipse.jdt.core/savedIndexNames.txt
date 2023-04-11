@@ -32,7 +32,6 @@ INDEX VERSION 1.132+C:\CURSO\ProyectoEclipse\.metadata\.plugins\org.eclipse.jdt.
 1178076528.index
 40112661.index
 2921750336.index
-3792008807.index
 3140164314.index
 830898703.index
 4199790984.index
