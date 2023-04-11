@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.example.exception.InvalidDataException"/>
-    <fullyQualifiedTypeName name="com.example.aplication.services.CatalogoService"/>
-    <fullyQualifiedTypeName name="com.example.domains.service.CategoryServiceImpl"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest"/>
-    <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.CategoryRepository"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="lombok.var"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.CsvSource"/>
@@ -17,7 +8,6 @@
     <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.EnumSource"/>
     <fullyQualifiedTypeName name="org.h2.server.web.WebServer"/>
     <fullyQualifiedTypeName name="com.mysql.cj.protocol.Message"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Film.Rating"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.FilmActor"/>
     <fullyQualifiedTypeName name="com.example.domains.core.entities.EntityBase"/>
     <fullyQualifiedTypeName name="com.example.exception.NotFoundException"/>
@@ -47,17 +37,27 @@
     <fullyQualifiedTypeName name="com.example.application.reosources.CategoryResource"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.CategoryService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
-    <fullyQualifiedTypeName name="lombok.Value"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.CategoryShort"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.Category"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.CategoryDTO"/>
     <fullyQualifiedTypeName name="com.example.application.reosources.LanguageResource"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.LanguageService"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.LanguageShort"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Language"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.LanguageDTO"/>
+    <fullyQualifiedTypeName name="com.example.application.reosources.FilmResource"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.FilmService"/>
+    <fullyQualifiedTypeName name="org.springframework.data.convert.ValueConverter"/>
+    <fullyQualifiedTypeName name="com.example.application.reosources.FilmResourceTest.ActorResourceTest.FilmShortMock"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.FilmShort"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Film"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.FilmDTO"/>
+    <fullyQualifiedTypeName name="lombok.Value"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.amqp.RabbitRetryTemplateCustomizer.Target"/>
+    <fullyQualifiedTypeName name="lombok.experimental.var"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Film"/>
+    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+    <fullyQualifiedTypeName name="org.h2.store.FileLockMethod"/>
+    <fullyQualifiedTypeName name="com.example.application.reosources.FilmResourceTest"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Film.Rating"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Language"/>
+    <fullyQualifiedTypeName name="java.lang.Short"/>
 </qualifiedTypeNameHistroy>
