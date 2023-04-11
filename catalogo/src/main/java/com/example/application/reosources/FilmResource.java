@@ -45,44 +45,42 @@ public class FilmResource {
 
 	@GetMapping
 	public List<FilmShort> getAll(@RequestParam(required = false) String sort) {
-		
+
 		if (sort != null)
-			return (List<FilmShort>) srv.getByProjection(Sort.by(sort),FilmShort.class);
+			return (List<FilmShort>) srv.getByProjection(Sort.by(sort), FilmShort.class);
 		return srv.getByProjection(FilmShort.class);
 	}
 
 	@GetMapping(params = "page")
 	public Page<FilmShort> getAll(Pageable pageable) {
-		
+
 		return srv.getByProjection(pageable, FilmShort.class);
 	}
-	
+
 	@GetMapping(path = "/{id}")
 	public FilmDTO getOne(@PathVariable int id) throws NotFoundException {
 		var ite = srv.getOne(id);
-		
+
 		if (ite.isEmpty())
 			throw new NotFoundException();
 
 		return FilmDTO.from(ite.get());
 	}
 
-	
 	@GetMapping(path = "/{id}/pelis")
 	@Transactional
 	public List<ElementoDTO<Integer, String>> getPelis(@PathVariable int id) throws NotFoundException {
 		var item = srv.getOne(id);
-		if(item.isEmpty())
+		if (item.isEmpty())
 			throw new NotFoundException();
 		return item.get().getFilmActors().stream()
-				.map(o -> new ElementoDTO<>(o.getFilm().getFilmId(), o.getFilm().getTitle()))
-				.toList();
+				.map(o -> new ElementoDTO<>(o.getFilm().getFilmId(), o.getFilm().getTitle())).toList();
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Object> create(@Valid @RequestBody FilmDTO item)
 			throws BadRequestException, DuplicateKeyException, InvalidDataException {
-		///acaabar
+
 		var actor = FilmDTO.from(item);
 		var newItem = srv.add(actor);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

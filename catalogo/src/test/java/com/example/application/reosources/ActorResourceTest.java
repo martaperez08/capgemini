@@ -35,112 +35,79 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Value;
 
+@WebMvcTest(ActorResource.class)
+class ActorResourceTest {
+	@Autowired
+	private MockMvc mockMvc;
 
+	@MockBean
+	private ActorService srv;
 
-	@WebMvcTest(ActorResource.class)
-	class ActorResourceTest {
-		@Autowired
-	    private MockMvc mockMvc;
-		
-		@MockBean
-		private ActorService srv;
+	@Autowired
+	ObjectMapper objectMapper;
 
-		@Autowired
-		ObjectMapper objectMapper;
-		
-		@BeforeEach
-		void setUp() throws Exception {
-		}
+	@BeforeEach
+	void setUp() throws Exception {
+	}
 
-		@AfterEach
-		void tearDown() throws Exception {
-		}
-		
-		@Value
-		static class ActorShortMock implements ActorShort {
-			int actorId;
-			String nombre;
-		}
-		
-		@Test
-		void testGetAllString() throws Exception {
-			List<ActorShort> lista = new ArrayList<>(
-			        Arrays.asList(new ActorShortMock(1, "Pepito Grillo"),
-			        		new ActorShortMock(2, "Carmelo Coton"),
-			        		new ActorShortMock(3, "Capitan Tan")));
-			when(srv.getByProjection(ActorShort.class)).thenReturn(lista);
-			mockMvc.perform(get("/api/actores/v1").accept(MediaType.APPLICATION_JSON))
-				.andExpectAll(
-						status().isOk(), 
-						content().contentType("application/json"),
-						jsonPath("$.size()").value(3)
-						);
+	@AfterEach
+	void tearDown() throws Exception {
+	}
 
-		}
+	@Value
+	static class ActorShortMock implements ActorShort {
+		int actorId;
+		String nombre;
+	}
 
-		@Test
-		void testGetAllPageable() throws Exception {
-			List<ActorShort> lista = new ArrayList<>(
-			        Arrays.asList(new ActorShortMock(1, "Pepito Grillo"),
-			        		new ActorShortMock(2, "Carmelo Coton"),
-			        		new ActorShortMock(3, "Capitan Tan")));
+	@Test
+	void testGetAllString() throws Exception {
+		List<ActorShort> lista = new ArrayList<>(Arrays.asList(new ActorShortMock(1, "Pepito Grillo"),
+				new ActorShortMock(2, "Carmelo Coton"), new ActorShortMock(3, "Capitan Tan")));
+		when(srv.getByProjection(ActorShort.class)).thenReturn(lista);
+		mockMvc.perform(get("/api/actores/v1").accept(MediaType.APPLICATION_JSON)).andExpectAll(status().isOk(),
+				content().contentType("application/json"), jsonPath("$.size()").value(3));
 
-			when(srv.getByProjection(PageRequest.of(0, 20), ActorShort.class))
-				.thenReturn(new PageImpl<>(lista));
-			mockMvc.perform(get("/api/actores/v1").queryParam("page", "0"))
-				.andExpectAll(
-					status().isOk(), 
-					content().contentType("application/json"),
-					jsonPath("$.content.size()").value(3),
-					jsonPath("$.size").value(3)
-					);
-		}
+	}
 
-		@Test
-		void testGetOne() throws Exception {
-			int id = 1;
-			var ele = new Actor(id, "Pepito", "Grillo");
-			when(srv.getOne(id)).thenReturn(Optional.of(ele));
-			mockMvc.perform(get("/api/actores/v1/{id}", id))
-				.andExpect(status().isOk())
-		        .andExpect(jsonPath("$.id").value(id))
-		        .andExpect(jsonPath("$.nombre").value(ele.getFirstName()))
-		        .andExpect(jsonPath("$.apellidos").value(ele.getLastName()))
-		        .andDo(print());
-		}
-		@Test
-		void testGetOne404() throws Exception {
-			int id = 1;
-			var ele = new Actor(id, "Pepito", "Grillo");
-			when(srv.getOne(id)).thenReturn(Optional.empty());
-			mockMvc.perform(get("/api/actores/v1/{id}", id))
-				.andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.title").value("Not Found"))
-		        .andDo(print());
-		}
+	@Test
+	void testGetAllPageable() throws Exception {
+		List<ActorShort> lista = new ArrayList<>(Arrays.asList(new ActorShortMock(1, "Pepito Grillo"),
+				new ActorShortMock(2, "Carmelo Coton"), new ActorShortMock(3, "Capitan Tan")));
 
-		@Test
-		void testCreate() throws Exception {
-			int id = 1;
-			var ele = new Actor(id, "Pepito", "Grillo");
-			when(srv.add(ele)).thenReturn(ele);
-			mockMvc.perform(post("/api/actores/v1")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(ActorDTO.from(ele)))
-				)
-				.andExpect(status().isCreated())
-		        .andExpect(header().string("Location", "http://localhost/api/actores/v1/1"))
-		        .andDo(print())
-		        ;
-		}
+		when(srv.getByProjection(PageRequest.of(0, 20), ActorShort.class)).thenReturn(new PageImpl<>(lista));
+		mockMvc.perform(get("/api/actores/v1").queryParam("page", "0")).andExpectAll(status().isOk(),
+				content().contentType("application/json"), jsonPath("$.content.size()").value(3),
+				jsonPath("$.size").value(3));
+	}
 
-//		@Test
-//		void testUpdate() {
-//			fail("Not yet implemented");
-//		}
-	//
-//		@Test
-//		void testDelete() {
-//			fail("Not yet implemented");
-//		}
+	@Test
+	void testGetOne() throws Exception {
+		int id = 1;
+		var ele = new Actor(id, "Pepito", "Grillo");
+		when(srv.getOne(id)).thenReturn(Optional.of(ele));
+		mockMvc.perform(get("/api/actores/v1/{id}", id)).andExpect(status().isOk())
+				.andExpect(jsonPath("$.id").value(id)).andExpect(jsonPath("$.nombre").value(ele.getFirstName()))
+				.andExpect(jsonPath("$.apellidos").value(ele.getLastName())).andDo(print());
+	}
+
+	@Test
+	void testGetOne404() throws Exception {
+		int id = 1;
+		var ele = new Actor(id, "Pepito", "Grillo");
+		when(srv.getOne(id)).thenReturn(Optional.empty());
+		mockMvc.perform(get("/api/actores/v1/{id}", id)).andExpect(status().isNotFound())
+				.andExpect(jsonPath("$.title").value("Not Found")).andDo(print());
+	}
+
+	@Test
+	void testCreate() throws Exception {
+		int id = 1;
+		var ele = new Actor(id, "Pepito", "Grillo");
+		when(srv.add(ele)).thenReturn(ele);
+		mockMvc.perform(post("/api/actores/v1").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(ActorDTO.from(ele)))).andExpect(status().isCreated())
+				.andExpect(header().string("Location", "http://localhost/api/actores/v1/1")).andDo(print());
+	}
+
 }

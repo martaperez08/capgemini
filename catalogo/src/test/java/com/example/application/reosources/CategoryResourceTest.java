@@ -38,18 +38,19 @@ import com.example.domains.entities.dtos.CategoryShort;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Value;
+
 @WebMvcTest(CategoryResource.class)
 class CategoryResourceTest {
 
 	@Autowired
-    private MockMvc mockMvc;
-	
+	private MockMvc mockMvc;
+
 	@MockBean
 	private CategoryService srv;
 
 	@Autowired
 	ObjectMapper objectMapper;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
 	}
@@ -57,57 +58,42 @@ class CategoryResourceTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 	@Value
 	static class CategoryShortMock implements CategoryShort {
 		int categoryId;
 		String nombre;
+
 		@Override
 		public String getInfo() {
 			// TODO Auto-generated method stub
 			return null;
 		}
-	
+
 	}
-	
+
 	@Test
 	void testGetAllString() throws Exception {
-		
-		
-		List<CategoryShort> lista = new ArrayList<>(
-		        Arrays.asList(new CategoryShortMock(1, "Miedo"),
-		        		new CategoryShortMock(2, "Aventura"),
-		        		new CategoryShortMock(3, "Accion")));
-		
-		
-		
+
+		List<CategoryShort> lista = new ArrayList<>(Arrays.asList(new CategoryShortMock(1, "Miedo"),
+				new CategoryShortMock(2, "Aventura"), new CategoryShortMock(3, "Accion")));
+
 		when(srv.getByProjection(CategoryShort.class)).thenReturn(lista);
-		mockMvc.perform(get("/api/category/v2").accept(MediaType.APPLICATION_JSON))
-			.andExpectAll(
-					status().isOk(), 
-					content().contentType("application/json"),
-					jsonPath("$.size()").value(3)
-					);
+		mockMvc.perform(get("/api/category/v2").accept(MediaType.APPLICATION_JSON)).andExpectAll(status().isOk(),
+				content().contentType("application/json"), jsonPath("$.size()").value(3));
 
 	}
 
 	@Test
 	void testGetAllPageable() throws Exception {
-		
-		List<CategoryShort> lista = new ArrayList<>(
-		        Arrays.asList(new CategoryShortMock(1, "Miedo"),
-		        		new CategoryShortMock(2, "Aventura"),
-		        		new CategoryShortMock(3, "Accion")));
 
-		when(srv.getByProjection(PageRequest.of(0, 20), CategoryShort.class))
-			.thenReturn(new PageImpl<>(lista));
-		mockMvc.perform(get("/api/category/v2").queryParam("page", "0"))
-			.andExpectAll(
-				status().isOk(), 
-				content().contentType("application/json"),
-				jsonPath("$.content.size()").value(3),
-				jsonPath("$.size").value(3)
-				);
+		List<CategoryShort> lista = new ArrayList<>(Arrays.asList(new CategoryShortMock(1, "Miedo"),
+				new CategoryShortMock(2, "Aventura"), new CategoryShortMock(3, "Accion")));
+
+		when(srv.getByProjection(PageRequest.of(0, 20), CategoryShort.class)).thenReturn(new PageImpl<>(lista));
+		mockMvc.perform(get("/api/category/v2").queryParam("page", "0")).andExpectAll(status().isOk(),
+				content().contentType("application/json"), jsonPath("$.content.size()").value(3),
+				jsonPath("$.size").value(3));
 	}
 
 	@Test
@@ -115,21 +101,18 @@ class CategoryResourceTest {
 		int id = 1;
 		var ele = new Category(id, "Miedo");
 		when(srv.getOne(id)).thenReturn(Optional.of(ele));
-		mockMvc.perform(get("/api/category/v2/{id}", id))
-			.andExpect(status().isOk())
-	        .andExpect(jsonPath("$.id").value(id))
-	        .andExpect(jsonPath("$.nombre").value(ele.getName()))
-	        .andDo(print());
+		mockMvc.perform(get("/api/category/v2/{id}", id)).andExpect(status().isOk())
+				.andExpect(jsonPath("$.id").value(id)).andExpect(jsonPath("$.nombre").value(ele.getName()))
+				.andDo(print());
 	}
+
 	@Test
 	void testGetOne404() throws Exception {
 		int id = 1;
 		var ele = new Category(id, "Miedo");
 		when(srv.getOne(id)).thenReturn(Optional.empty());
-		mockMvc.perform(get("/api/category/v2/{id}", id))
-			.andExpect(status().isNotFound())
-			.andExpect(jsonPath("$.title").value("Not Found"))
-	        .andDo(print());
+		mockMvc.perform(get("/api/category/v2/{id}", id)).andExpect(status().isNotFound())
+				.andExpect(jsonPath("$.title").value("Not Found")).andDo(print());
 	}
 
 	@Test
@@ -137,24 +120,9 @@ class CategoryResourceTest {
 		int id = 1;
 		var ele = new Category(id, "Miedo");
 		when(srv.add(ele)).thenReturn(ele);
-		mockMvc.perform(post("/api/category/v2")
-			.contentType(MediaType.APPLICATION_JSON)
-			.content(objectMapper.writeValueAsString(CategoryDTO.from(ele)))
-			)
-			.andExpect(status().isCreated())
-	        .andExpect(header().string("Location", "http://localhost/api/category/v2/1"))
-	        .andDo(print())
-	        ;
+		mockMvc.perform(post("/api/category/v2").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(CategoryDTO.from(ele)))).andExpect(status().isCreated())
+				.andExpect(header().string("Location", "http://localhost/api/category/v2/1")).andDo(print());
 	}
-
-//	@Test
-//	void testUpdate() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	void testDelete() {
-//		fail("Not yet implemented");
-//	}
 
 }
