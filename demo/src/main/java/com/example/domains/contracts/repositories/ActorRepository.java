@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.example.domains.core.repositories.contracts.RepositoryWithProjections;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorShort;
-
+@RestResource(exported = false)
 public interface ActorRepository extends JpaRepository<Actor, Integer>, JpaSpecificationExecutor<Actor>, RepositoryWithProjections {
 
 	// cuidado con equivocarse nombre metodos
