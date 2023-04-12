@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.actuator=2
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-starter=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-jpa=2
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.devtools=2
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.h2=2
