@@ -27,4 +27,14 @@ public class InvalidDataException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean hasErrors() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Object getErrors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

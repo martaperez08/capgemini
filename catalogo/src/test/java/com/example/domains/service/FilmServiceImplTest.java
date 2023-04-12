@@ -2,6 +2,8 @@ package com.example.domains.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -20,7 +22,12 @@ import com.example.domains.contracts.repositories.FilmRepository;
 import com.example.domains.contracts.service.ActorService;
 import com.example.domains.contracts.service.FilmService;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.Category;
 import com.example.domains.entities.Film;
+import com.example.exception.InvalidDataException;
+import com.example.exception.NotFoundException;
+
+import lombok.var;
 
 
 @DataJpaTest
@@ -76,5 +83,9 @@ class FilmServiceImplTest {
 		srv.deleteById(1);;
 		assertThat(srv.getOne(1).isPresent()).isTrue();
 	}
+	
+	
+	
+	
 
 }

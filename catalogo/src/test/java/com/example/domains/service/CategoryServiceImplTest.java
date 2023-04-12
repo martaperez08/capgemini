@@ -3,6 +3,8 @@ package com.example.domains.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ import com.example.domains.contracts.repositories.CategoryRepository;
 import com.example.domains.contracts.service.CategoryService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
+import com.example.exception.InvalidDataException;
+import com.example.exception.NotFoundException;
 
 import lombok.var;
 
@@ -92,4 +96,19 @@ class CategoryServiceImplTest {
 		categoryService.deleteById(1);;
 		assertThat(categoryService.getOne(1).isPresent()).isTrue();
 	}
+	
+	
+	
+	@Test
+	void testUpdateId() throws NotFoundException, InvalidDataException {
+		
+		int id = 1;
+		var ele = new Category(1, "Miedo");
+		when(daoCategoryRepository.findById(1)).thenReturn(Optional.of(new Category(1, "Miedo")));
+		categoryService.modify(ele);
+		verify(daoCategoryRepository, times(0)).save(null);
+
+	
+	}
+	
 }

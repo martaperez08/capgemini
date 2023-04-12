@@ -2,6 +2,8 @@ package com.example.domains.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -21,6 +23,10 @@ import com.example.domains.contracts.service.FilmService;
 import com.example.domains.contracts.service.LanguageService;
 import com.example.domains.entities.Film;
 import com.example.domains.entities.Language;
+import com.example.exception.InvalidDataException;
+import com.example.exception.NotFoundException;
+
+import lombok.var;
 
 @DataJpaTest
 @ComponentScan(basePackages = "com.example")
@@ -73,6 +79,18 @@ class LanguageServiceImplTest {
 		when(daoLanguageRepository.findById(1)).thenReturn(Optional.of( new Language(0, "Chino")));
 		srv.deleteById(1);;
 		assertThat(srv.getOne(1).isPresent()).isTrue();
+	}
+	
+	@Test
+	void testUpdateId() throws NotFoundException, InvalidDataException {
+		
+		int id = 1;
+		var ele = new Language(0, "Chino");
+		when(daoLanguageRepository.findById(1)).thenReturn(Optional.of(new Language(0, "Chino")));
+		srv.modify(ele);
+		verify(daoLanguageRepository, times(0)).save(null);
+
+	
 	}
 
 }

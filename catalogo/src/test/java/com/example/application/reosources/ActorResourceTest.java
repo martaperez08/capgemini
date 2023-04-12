@@ -2,8 +2,10 @@ package com.example.application.reosources;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -31,6 +33,7 @@ import com.example.domains.contracts.service.ActorService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.ActorShort;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Value;
@@ -97,7 +100,7 @@ class ActorResourceTest {
 		var ele = new Actor(id, "Pepito", "Grillo");
 		when(srv.getOne(id)).thenReturn(Optional.empty());
 		mockMvc.perform(get("/api/actores/v1/{id}", id)).andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.id").value("Not Found")).andDo(print());
+				.andExpect(jsonPath("$.title").value("Not Found")).andDo(print());
 	}
 
 	@Test
@@ -111,13 +114,15 @@ class ActorResourceTest {
 	}
 	
 	@Test
-	void testUpdate() {
-		
+	void testUpdate() throws JsonProcessingException, Exception {
+		int id = 1;
+		var ele = new Actor(id, "Pepito", "Grillo");
+		when(srv.modify(ele)).thenReturn(ele);
+		mockMvc.perform(put("/api/actores/v1/1").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(ActorDTO.from(ele)))).andExpect(status().isNoContent())
+				.andDo(print());
 	}
 
-//	@Test
-//	void testDelete() {
-//		fail("Not yet implemented");
-//	}
+	
 
 }
