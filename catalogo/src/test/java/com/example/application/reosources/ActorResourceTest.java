@@ -109,5 +109,15 @@ class ActorResourceTest {
 				.content(objectMapper.writeValueAsString(ActorDTO.from(ele)))).andExpect(status().isCreated())
 				.andExpect(header().string("Location", "http://localhost/api/actores/v1/1")).andDo(print());
 	}
+	
+	@Test
+	void testUpdate() {
+		
+	}
+
+//	@Test
+//	void testDelete() {
+//		fail("Not yet implemented");
+//	}
 
 }

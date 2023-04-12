@@ -85,7 +85,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		dao.deleteById(id);
 		
 	}
 

@@ -3,6 +3,7 @@ package com.example.domains.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -76,6 +77,19 @@ class ActorServiceImplTest {
 		srv.deleteById(1);;
 		assertThat(srv.getOne(1).isPresent()).isTrue();
 	}
+	
+	
+	@Test
+	void testUpdateId() throws NotFoundException, InvalidDataException {
+		
+		int id = 1;
+		var ele = new Actor(id, "Pepito", "GRILLO");
+		when(daoActorRepository.findById(1)).thenReturn(Optional.of(new Actor(1, "Pepito", "GRILLO")));
+		srv.modify(ele);
+		verify(daoActorRepository, times(0)).save(null);
 
+	
+	}
+	
 
 }

@@ -80,7 +80,7 @@ public class LanguageServiceImpl implements LanguageService{
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		dao.deleteById(id);
 		
 	}
 

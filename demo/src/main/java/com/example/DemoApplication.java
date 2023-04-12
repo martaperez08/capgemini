@@ -121,26 +121,6 @@ public class DemoApplication implements CommandLineRunner {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		//		ObjectMapper objectMapper = new ObjectMapper();
 		//		dao.findAllBy(ActorDTO.class).stream().map(
 		//				item->{
