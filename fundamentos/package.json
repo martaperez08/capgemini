@@ -9,7 +9,8 @@
   "author": "Marta",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "nodemon": "^2.0.22"
   },
   "devDependencies": {
     "eslint": "^8.38.0"
