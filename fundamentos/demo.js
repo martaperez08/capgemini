@@ -132,3 +132,4 @@ o1.cotilla = () => console.log('estoy en otro prototipo')
 // MiClase.prototype.cotilla = () => console.log('estoy en otro prototipo')
 o2.cotilla()
 o1.cotilla()
+
