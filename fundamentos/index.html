@@ -7,6 +7,7 @@
     <title>Ejemplos del curso MARTA </title>
 </head>
 <body>
+   <main class="container-fluid">
     <h1 class="bg-light">Hola mundosss</h1>
     <div><input type="number"  id="op1" value="0">
         +
@@ -18,17 +19,30 @@
     
     
     </div>
+</main> 
    <script>
    // para no dejar ratro de variable anonima funcion
     (function (){
 
         let result= document.querySelector('output')
+
+        if(localStorage && localStorage.result){
+            result.textContent = localStorage.result
+            result.textContent= localStorage.getItem('result')
+        }
         
         let button= document.querySelector('input[type= button]')
-        button.addEventListener('click',ev => {
+
+        let suma = ev => {
             result.textContent= +document.querySelector('#op1').value + +document.querySelector('#op2').value // el mas para convertilo en numero sino lo coge como string 
             
+        }
+        button.addEventListener('click',suma)
+        button.addEventListener('click',ev => {
+            console.log('Boton pulsado')
+            
         })
+        button.removeEventListener('click',)
     })();
    
    
