@@ -52,6 +52,15 @@ numberOperations.forEach((button) => {
         if (tipo === "multi") result.textContent = multi(numbers[0], numbers[1]);
         if (tipo === "division") result.textContent = division(numbers[0], numbers[1]);
         break;
+        case "CE":
+            while(numbers.length >0){
+                numbers.pop();
+            }
+            txt = "";
+            tipo=" "
+            result.textContent=""
+
+        break;
       default:
         return;
     }
