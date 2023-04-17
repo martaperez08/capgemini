@@ -8,8 +8,32 @@
 </head>
 <body>
     <h1 class="bg-light">Hola mundosss</h1>
-    <script src="demo.js"></script>
- 
+    <div><input type="number"  id="op1" value="0">
+        +
+        <input type="number"  id="op2" value="0">
+        <input type="button"   value="=" >
+        <output>0</output>
+    
+    
+    
+    
+    </div>
+   <script>
+   // para no dejar ratro de variable anonima funcion
+    (function (){
+
+        let result= document.querySelector('output')
+        
+        let button= document.querySelector('input[type= button]')
+        button.addEventListener('click',ev => {
+            result.textContent= +document.querySelector('#op1').value + +document.querySelector('#op2').value // el mas para convertilo en numero sino lo coge como string 
+            
+        })
+    })();
+   
+   
+   </script>   
+    <!-- <script src="demo.js"></script>
     <script>
         console.log('hola mundo');
         
@@ -20,6 +44,6 @@
         console.log(m1.nombre, m1.calc(2,2))
         console.log(nombre,calc(2,2))
         display();
-    </script>
+    </script> -->
 </body>
 </html>
