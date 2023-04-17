@@ -58,7 +58,7 @@ numberOperations.forEach((button) => {
             }
             txt = "";
             tipo=" "
-            result.textContent=""
+            result.textContent="0"
 
         break;
       default:
