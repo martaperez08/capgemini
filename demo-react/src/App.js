@@ -1,11 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "./Ejercicios/calculadora.css"
+
 
 import { Calculadora } from "./Ejercicios/calculadora.js";
 import React, { Component } from "react";
 import { Card, Contador } from "./componentes";
 import { ErrorBoundary } from "./comunes";
+import Muro from './Ejercicios/muro';
 
 export default class App extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class App extends Component {
       main: 0,
     };
     this.menu = [
+      { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: "inicio", url: "/", componente: <Home /> },
       {
         texto: "Calcualdora",
