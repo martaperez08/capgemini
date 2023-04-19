@@ -1,0 +1,39 @@
+div{
+
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: solid 1px #c2c2c2;
+    padding-bottom: 10px;
+    margin: auto;
+    background: #fafafa;
+  }
+  
+  input[type=button]{
+      background-color: #4caf4f00;
+      border: none;
+      color: black;
+      padding: 16px 32px;
+      font-size: 16px;
+      min-width: 21%;
+      text-decoration: none;
+      margin: 4px 2px;
+      border: solid 1px #c2c2c2;
+  }
+  input[type=button]:hover {
+    background-color: #3030ec27;
+  }
+  #buttonIgual{
+      background-color: #13175679;
+  }
+  
+  output{
+  
+      width: 30px;
+      margin-bottom: 5%;
+      padding: 2px;
+      text-align: center;
+      border: solid 1px #c2c2c2;
+      background-color: white;
+  
+  }

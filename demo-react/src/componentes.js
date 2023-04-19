@@ -41,3 +41,8 @@ export class Contador extends Component {
     );
   }
 }
+
+export class Card extends Component{
+
+  
+}
