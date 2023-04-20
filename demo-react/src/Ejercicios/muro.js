@@ -9,6 +9,10 @@ export default class Muro extends Component {
       error: null,
     };
   }
+  btn = (indice) => {
+    this.state.listado [indice].isImageVisible = true
+    this.setState({ listado: this.state.listado });
+  };
   render() {
     if (this.state.loading) return <Esperando />;
     return (
@@ -17,30 +21,34 @@ export default class Muro extends Component {
         <h1>Muro</h1>
 
         <div className="row">
-        {this.state.listado &&
-          this.state.listado.map((data, key) => {
-            return (
-             
-<div className="col-3">
-              
-              <div className="card" style={{ width: "18rem" }}>
-                <img className="card-img-top" src={data.download_url} alt=" image cap" />
-                <div className="card-body">
-                  <h5 className="card-title">{data.author}</h5>
-                  <p className="card-text">
-                  {data.download_url}
-                  </p>
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
-                  </a>
-                </div>
-              </div>
-              </div>
-            );
+          {this.state.listado &&
+            this.state.listado.map((data, key) => {
+              return (
+                <div className="col-3">
+                  <div className="card" style={{ width: "18rem" }}>
+                    {data?.isImageVisible ? (
+                      <img
+                        className="card-img-top"
+                        src={data.download_url}
+                        alt=" image cap"
+                      />
+                    ) : (
+                      <div></div>
+                    )}
 
-          })}
-           </div>
-          
+                    <div className="card-body">
+                      <h5 className="card-title">{data.author}</h5>
+                      <p className="card-text">{data.download_url}</p>
+
+                      <button className="btn btn-primary" onClick={ () => this.btn(key)}>
+                        SHOW IAMGE
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </>
     );
   }
