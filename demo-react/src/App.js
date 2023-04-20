@@ -7,6 +7,8 @@ import React, { Component } from "react";
 import { Card, Contador } from "./componentes";
 import { ErrorBoundary } from "./comunes";
 import Muro from './Ejercicios/muro';
+import { PadreFormulrio } from "./formulario";
+import { ActoresMnt } from "./componentes/actores";
 
 export default class App extends Component {
   constructor(props) {
@@ -16,6 +18,8 @@ export default class App extends Component {
       main: 0,
     };
     this.menu = [
+     { texto: 'actores', url: '/Actores', componente: <ActoresMnt /> }, 
+      { texto: 'formulario', url: '/Formualario', componente: <PadreFormulrio /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: "inicio", url: "/", componente: <Home /> },
       {

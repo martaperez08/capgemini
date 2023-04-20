@@ -68,7 +68,7 @@ public class LanguageServiceImpl implements LanguageService{
 	public Language modify(Language item) throws NotFoundException, InvalidDataException {
 		if(item == null) throw  new InvalidDataException("No puede ser nulo");
 		if(item.isInvalid()) throw  new InvalidDataException(item.getErrorsMessage());
-		if(dao.existsById(item.getLanguageId())) throw  new NotFoundException(item.getErrorsMessage());
+		if(!dao.existsById(item.getLanguageId())) throw  new NotFoundException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 

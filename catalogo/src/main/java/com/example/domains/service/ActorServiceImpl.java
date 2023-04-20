@@ -72,7 +72,7 @@ public class ActorServiceImpl implements ActorService {
 	public Actor modify(Actor item) throws NotFoundException, InvalidDataException {
 		if(item == null) throw  new InvalidDataException("No puede ser nulo");
 		if(item.isInvalid()) throw  new InvalidDataException(item.getErrorsMessage());
-		if(dao.existsById(item.getActorId())) throw  new NotFoundException(item.getErrorsMessage());
+		if(!dao.existsById(item.getActorId())) throw  new NotFoundException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 

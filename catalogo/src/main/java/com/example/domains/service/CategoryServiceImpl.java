@@ -72,7 +72,7 @@ public class CategoryServiceImpl implements CategoryService{
 	public Category modify(Category item) throws NotFoundException, InvalidDataException {
 		if(item == null) throw  new InvalidDataException("No puede ser nulo");
 		if(item.isInvalid()) throw  new InvalidDataException(item.getErrorsMessage());
-		if(dao.existsById(item.getCategoryId())) throw  new NotFoundException(item.getErrorsMessage());
+		if(!dao.existsById(item.getCategoryId())) throw  new NotFoundException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 
