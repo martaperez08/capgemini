@@ -16,9 +16,13 @@ export default class Muro extends Component {
         {this.state.error && <ErrorMessage msg={this.state.error} />}
         <h1>Muro</h1>
 
+        <div className="row">
         {this.state.listado &&
           this.state.listado.map((data, key) => {
             return (
+             
+<div className="col-3">
+              
               <div className="card" style={{ width: "18rem" }}>
                 <img className="card-img-top" src={data.download_url} alt=" image cap" />
                 <div className="card-body">
@@ -31,9 +35,12 @@ export default class Muro extends Component {
                   </a>
                 </div>
               </div>
+              </div>
             );
+
           })}
-           {JSON.stringify(this.state.listado)}
+           </div>
+          
       </>
     );
   }
