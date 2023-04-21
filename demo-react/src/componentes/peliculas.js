@@ -374,34 +374,129 @@ class ActoresForm extends Component {
           <ValidationMessage msg={this.state.msgErr.id} />
         </div>
         <div className="form-group">
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="descripcion">Descripcion</label>
           <input
             type="text"
             className="form-control"
-            id="nombre"
-            name="nombre"
-            value={this.state.elemento.nombre}
+            id="descripcion"
+            name="descripcion"
+            value={this.state.elemento.descr}
             onChange={this.handleChange}
             required
             minLength="2"
             maxLength="45"
           />
-          <ValidationMessage msg={this.state.msgErr.nombre} />
+          <ValidationMessage msg={this.state.msgErr.descripcion} />
         </div>
         <div className="form-group">
-          <label htmlFor="apellidos">Apellidos</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
             className="form-control"
-            id="apellidos"
-            name="apellidos"
-            value={this.state.elemento.apellidos}
+            id="title"
+            name="title"
+            value={this.state.elemento.title}
             onChange={this.handleChange}
             minLength="2"
             maxLength="10"
           />
-          <ValidationMessage msg={this.state.msgErr.apellidos} />
+          <ValidationMessage msg={this.state.msgErr.title} />
         </div>
+        <div className="form-group">
+          <label htmlFor="lenght">Lenght</label>
+          <input
+            type="number"
+            className="form-control"
+            id="lenght"
+            name="lenght"
+            value={this.state.elemento.lenght}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.lenght} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rating">Rating</label>
+          <input
+            type="number"
+            className="form-control"
+            id="rating"
+            name="rating"
+            value={this.state.elemento.rating}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.rating} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="releaseYear">releaseYear </label>
+          <input
+            type="number"
+            className="form-control"
+            id="releaseYear"
+            name="releaseYear"
+            value={this.state.elemento.releaseYear}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.releaseYear} />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="rentalDuration">releaseYear </label>
+          <input
+            type="number"
+            className="form-control"
+            id="rentalDuration"
+            name="rentalDuration"
+            value={this.state.elemento.rentalDuration}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.rentalDuration} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rentalRate">rentalRate </label>
+          <input
+            type="number"
+            className="form-control"
+            id="rentalRate"
+            name="rentalRate"
+            value={this.state.elemento.rentalRate}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.rentalRate} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="replacementCost">replacementCost </label>
+          <input
+            type="number"
+            className="form-control"
+            id="replacementCost"
+            name="replacementCost"
+            value={this.state.elemento.replacementCost}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.replacementCost} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="language">language </label>
+          <input
+            type="text"
+            className="form-control"
+            id="language"
+            name="language"
+            value={this.state.elemento.language}
+            onChange={this.handleChange}
+          
+          />
+          <ValidationMessage msg={this.state.msgErr.language} />
+        </div>
+
+
+
         <div className="form-group">
           <button
             className="btn btn-primary"
