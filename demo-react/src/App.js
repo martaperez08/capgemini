@@ -9,6 +9,7 @@ import { ErrorBoundary } from "./comunes";
 import Muro from './Ejercicios/muro';
 import { PadreFormulrio } from "./formulario";
 import { ActoresMnt } from "./componentes/actores";
+import { PeliculasMnt } from "./componentes/peliculas";
 
 export default class App extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ export default class App extends Component {
       main: 0,
     };
     this.menu = [
-     { texto: 'actores', url: '/Actores', componente: <ActoresMnt /> }, 
+      { texto: 'actores', url: '/Actores', componente: <ActoresMnt /> },
+      { texto: 'peliculas', url: '/Peliculas', componente: <PeliculasMnt /> },  
       { texto: 'formulario', url: '/Formualario', componente: <PadreFormulrio /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: "inicio", url: "/", componente: <Home /> },
