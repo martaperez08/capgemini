@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import myPop from "../imagenes/actor.jpg";
 import {
   ValidationMessage,
   ErrorMessage,
@@ -269,30 +268,23 @@ function ActoresList(props) {
 }
 function ActoresView({ elemento, onCancel }) {
   return (
-    <div className="col d-flex justify-content-center m-2">
-
-    <div className="card" style={{ width: "25rem"}} >
-      <img className="card-img-top" src={myPop} alt="Card image cap" />
-      <div className="card-body">
-        <h5 className="card-title">ACTOR</h5>
-        <p>
-          <b>Código:</b> {elemento.id}
-          <br />
-          <b>Nombre:</b> {elemento.nombre}
-          <br />
-          <b>Apellidos:</b> {elemento.apellidos}
-        </p>
-        <p>
-          <button
-            className="btn btn-outline-info"
-            type="button"
-            onClick={(e) => onCancel()}
-          >
-            Volver
-          </button>
-        </p>
-      </div>
-    </div>
+    <div>
+      <p>
+        <b>Código:</b> {elemento.id}
+        <br />
+        <b>Nombre:</b> {elemento.nombre}
+        <br />
+        <b>Apellidos:</b> {elemento.apellidos}
+      </p>
+      <p>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={(e) => onCancel()}
+        >
+          Volver
+        </button>
+      </p>
     </div>
   );
 }

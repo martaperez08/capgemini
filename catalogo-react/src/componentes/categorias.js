@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import myPop from "../imagenes/actor.jpg";
 import {
   ValidationMessage,
   ErrorMessage,
@@ -7,7 +6,7 @@ import {
   PaginacionCmd as Paginacion,
 } from "../biblioteca/comunes";
 import { titleCase } from "../biblioteca/formateadores";
-export class ActoresMnt extends Component {
+export class CategoriasMnt extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +22,7 @@ export class ActoresMnt extends Component {
     this.idOriginal = null;
     this.url =
       (process.env.REACT_APP_API_URL || "http://localhost:8010/") +
-      "/api/actores/v1";
+      "/api/category/v2";
   }
 
   setError(msg) {
@@ -33,7 +32,7 @@ export class ActoresMnt extends Component {
     let pagina = this.state.pagina;
     if (num || num === 0) pagina = num;
     this.setState({ loading: true });
-    fetch(`${this.url}?sort=firstName&page=${pagina}&size=10`)
+    fetch(`${this.url}?sort=name&page=${pagina}&size=10`)
       .then((response) => {
         response.json().then(
           response.ok
@@ -218,12 +217,12 @@ function ActoresList(props) {
       <table className="table table-hover table-striped">
         <thead className="table-info">
           <tr>
-            <th>Lista de Actores y Actrices</th>
+            <th>Lista de Categorias</th>
             <th className="text-end">
               <input
                 type="button"
                 className="btn btn-primary"
-                value="Añadirr"
+                value="Añadir"
                 onClick={(e) => props.onAdd()}
               />
             </th>
@@ -231,27 +230,27 @@ function ActoresList(props) {
         </thead>
         <tbody className="table-group-divider">
           {props.listado.map((item) => (
-            <tr key={item.actorId}>
-              <td>{titleCase(item.nombre)}</td>
+            <tr key={item.categoryId}>
+              <td>{titleCase(item.info)}</td>
               <td className="text-end">
                 <div className="btn-group text-end" role="group">
                   <input
                     type="button"
                     className="btn btn-primary"
                     value="Ver"
-                    onClick={(e) => props.onView(item.actorId)}
+                    onClick={(e) => props.onView(item.categoryId)}
                   />
                   <input
                     type="button"
                     className="btn btn-primary"
                     value="Editar"
-                    onClick={(e) => props.onEdit(item.actorId)}
+                    onClick={(e) => props.onEdit(item.categoryId)}
                   />
                   <input
                     type="button"
                     className="btn btn-danger"
                     value="Borrar"
-                    onClick={(e) => props.onDelete(item.actorId)}
+                    onClick={(e) => props.onDelete(item.categoryId)}
                   />
                 </div>
               </td>
@@ -269,30 +268,22 @@ function ActoresList(props) {
 }
 function ActoresView({ elemento, onCancel }) {
   return (
-    <div className="col d-flex justify-content-center m-2">
-
-    <div className="card" style={{ width: "25rem"}} >
-      <img className="card-img-top" src={myPop} alt="Card image cap" />
-      <div className="card-body">
-        <h5 className="card-title">ACTOR</h5>
-        <p>
-          <b>Código:</b> {elemento.id}
-          <br />
-          <b>Nombre:</b> {elemento.nombre}
-          <br />
-          <b>Apellidos:</b> {elemento.apellidos}
-        </p>
-        <p>
-          <button
-            className="btn btn-outline-info"
-            type="button"
-            onClick={(e) => onCancel()}
-          >
-            Volver
-          </button>
-        </p>
-      </div>
-    </div>
+    <div>
+      <p>
+        <b>Código:</b> {elemento.id}
+        <br />
+        <b>Nombre:</b> {elemento.nombre}
+        
+      </p>
+      <p>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={(e) => onCancel()}
+        >
+          Volver
+        </button>
+      </p>
     </div>
   );
 }
@@ -319,18 +310,7 @@ class ActoresForm extends Component {
     this.validar();
   }
   validarCntr(cntr) {
-    if (cntr.name) {
-      // eslint-disable-next-line default-case
-      switch (cntr.name) {
-        case "apellidos":
-          cntr.setCustomValidity(
-            cntr.value !== cntr.value.toUpperCase()
-              ? "Debe estar en mayúsculas"
-              : ""
-          );
-          break;
-      }
-    }
+
   }
   validar() {
     if (this.form) {
@@ -381,24 +361,11 @@ class ActoresForm extends Component {
             onChange={this.handleChange}
             required
             minLength="2"
-            maxLength="45"
+            maxLength="25"
           />
           <ValidationMessage msg={this.state.msgErr.nombre} />
         </div>
-        <div className="form-group">
-          <label htmlFor="apellidos">Apellidos</label>
-          <input
-            type="text"
-            className="form-control"
-            id="apellidos"
-            name="apellidos"
-            value={this.state.elemento.apellidos}
-            onChange={this.handleChange}
-            minLength="2"
-            maxLength="10"
-          />
-          <ValidationMessage msg={this.state.msgErr.apellidos} />
-        </div>
+       
         <div className="form-group">
           <button
             className="btn btn-primary"
