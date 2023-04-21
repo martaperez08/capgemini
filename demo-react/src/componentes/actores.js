@@ -222,7 +222,7 @@ function ActoresList(props) {
               <input
                 type="button"
                 className="btn btn-primary"
-                value="Añadir"
+                value="Añadirr"
                 onClick={(e) => props.onAdd()}
               />
             </th>

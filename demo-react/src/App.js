@@ -10,6 +10,8 @@ import Muro from './Ejercicios/muro';
 import { PadreFormulrio } from "./formulario";
 import { ActoresMnt } from "./componentes/actores";
 import { PeliculasMnt } from "./componentes/peliculas";
+import { LanguageMnt } from "./componentes/language";
+import { CategoriasMnt } from "./componentes/categorias";
 
 export default class App extends Component {
   constructor(props) {
@@ -21,6 +23,8 @@ export default class App extends Component {
     this.menu = [
       { texto: 'actores', url: '/Actores', componente: <ActoresMnt /> },
       { texto: 'peliculas', url: '/Peliculas', componente: <PeliculasMnt /> },  
+      { texto: 'language', url: '/Language', componente: <LanguageMnt /> },
+      { texto: 'categorias', url: '/Categorias', componente: <CategoriasMnt /> },
       { texto: 'formulario', url: '/Formualario', componente: <PadreFormulrio /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: "inicio", url: "/", componente: <Home /> },

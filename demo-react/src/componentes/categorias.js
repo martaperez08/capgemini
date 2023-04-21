@@ -6,7 +6,7 @@ import {
   PaginacionCmd as Paginacion,
 } from "../biblioteca/comunes";
 import { titleCase } from "../biblioteca/formateadores";
-export class PeliculasMnt extends Component {
+export class CategoriasMnt extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export class PeliculasMnt extends Component {
     this.idOriginal = null;
     this.url =
       (process.env.REACT_APP_API_URL || "http://localhost:8010/") +
-      "/api/film/v1";
+      "/api/category/v2";
   }
 
   setError(msg) {
@@ -32,7 +32,7 @@ export class PeliculasMnt extends Component {
     let pagina = this.state.pagina;
     if (num || num === 0) pagina = num;
     this.setState({ loading: true });
-    fetch(`${this.url}?sort=title&page=${pagina}&size=10`)
+    fetch(`${this.url}?sort=name&page=${pagina}&size=10`)
       .then((response) => {
         response.json().then(
           response.ok
@@ -217,7 +217,7 @@ function ActoresList(props) {
       <table className="table table-hover table-striped">
         <thead className="table-info">
           <tr>
-            <th>Lista de peliculas</th>
+            <th>Lista de Categorias</th>
             <th className="text-end">
               <input
                 type="button"
@@ -230,7 +230,7 @@ function ActoresList(props) {
         </thead>
         <tbody className="table-group-divider">
           {props.listado.map((item) => (
-            <tr key={item.filmId}>
+            <tr key={item.categoryId}>
               <td>{titleCase(item.info)}</td>
               <td className="text-end">
                 <div className="btn-group text-end" role="group">
@@ -238,19 +238,19 @@ function ActoresList(props) {
                     type="button"
                     className="btn btn-primary"
                     value="Ver"
-                    onClick={(e) => props.onView(item.filmId)}
+                    onClick={(e) => props.onView(item.categoryId)}
                   />
                   <input
                     type="button"
                     className="btn btn-primary"
                     value="Editar"
-                    onClick={(e) => props.onEdit(item.filmId)}
+                    onClick={(e) => props.onEdit(item.categoryId)}
                   />
                   <input
                     type="button"
                     className="btn btn-danger"
                     value="Borrar"
-                    onClick={(e) => props.onDelete(item.filmId)}
+                    onClick={(e) => props.onDelete(item.categoryId)}
                   />
                 </div>
               </td>
@@ -272,20 +272,8 @@ function ActoresView({ elemento, onCancel }) {
       <p>
         <b>Código:</b> {elemento.id}
         <br />
-        <b>Titulo:</b> {elemento.title}
-        <br />
-        <b>Descripcion:</b> {elemento.descr}
-        <br />
-        <b>Lenght:</b> {elemento.lenght}
-        <br />
-        <b>Rating:</b> {elemento.rating}
-        <br />
-        <b>Release Year:</b> {elemento.releaseYear}
-        <br/>
+        <b>Nombre:</b> {elemento.nombre}
         
-        <b>Language:</b> {elemento.language.idioma}
-        <br/>
-      
       </p>
       <p>
         <button
@@ -322,18 +310,7 @@ class ActoresForm extends Component {
     this.validar();
   }
   validarCntr(cntr) {
-    if (cntr.name) {
-      // eslint-disable-next-line default-case
-      switch (cntr.name) {
-        case "apellidos":
-          cntr.setCustomValidity(
-            cntr.value !== cntr.value.toUpperCase()
-              ? "Debe estar en mayúsculas"
-              : ""
-          );
-          break;
-      }
-    }
+
   }
   validar() {
     if (this.form) {
@@ -384,24 +361,11 @@ class ActoresForm extends Component {
             onChange={this.handleChange}
             required
             minLength="2"
-            maxLength="45"
+            maxLength="25"
           />
           <ValidationMessage msg={this.state.msgErr.nombre} />
         </div>
-        <div className="form-group">
-          <label htmlFor="apellidos">Apellidos</label>
-          <input
-            type="text"
-            className="form-control"
-            id="apellidos"
-            name="apellidos"
-            value={this.state.elemento.apellidos}
-            onChange={this.handleChange}
-            minLength="2"
-            maxLength="10"
-          />
-          <ValidationMessage msg={this.state.msgErr.apellidos} />
-        </div>
+       
         <div className="form-group">
           <button
             className="btn btn-primary"

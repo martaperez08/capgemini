@@ -6,7 +6,7 @@ import {
   PaginacionCmd as Paginacion,
 } from "../biblioteca/comunes";
 import { titleCase } from "../biblioteca/formateadores";
-export class PeliculasMnt extends Component {
+export class LanguageMnt extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export class PeliculasMnt extends Component {
     this.idOriginal = null;
     this.url =
       (process.env.REACT_APP_API_URL || "http://localhost:8010/") +
-      "/api/film/v1";
+      "/api/language/v1";
   }
 
   setError(msg) {
@@ -32,7 +32,7 @@ export class PeliculasMnt extends Component {
     let pagina = this.state.pagina;
     if (num || num === 0) pagina = num;
     this.setState({ loading: true });
-    fetch(`${this.url}?sort=title&page=${pagina}&size=10`)
+    fetch(`${this.url}?sort=name&page=${pagina}&size=10`)
       .then((response) => {
         response.json().then(
           response.ok
@@ -183,7 +183,7 @@ export class PeliculasMnt extends Component {
         break;
       case "view":
         result.push(
-          <ActoresView
+          <LanguageView
             key="main"
             elemento={this.state.elemento}
             onCancel={(e) => this.cancel()}
@@ -193,7 +193,7 @@ export class PeliculasMnt extends Component {
       default:
         if (this.state.listado)
           result.push(
-            <ActoresList
+            <LanguageList
               key="main"
               listado={this.state.listado}
               pagina={this.state.pagina}
@@ -211,18 +211,18 @@ export class PeliculasMnt extends Component {
   }
 }
 
-function ActoresList(props) {
+function LanguageList(props) {
   return (
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
           <tr>
-            <th>Lista de peliculas</th>
+            <th>Lista de Language</th>
             <th className="text-end">
               <input
                 type="button"
                 className="btn btn-primary"
-                value="Añadir"
+                value="Añadirr"
                 onClick={(e) => props.onAdd()}
               />
             </th>
@@ -230,7 +230,7 @@ function ActoresList(props) {
         </thead>
         <tbody className="table-group-divider">
           {props.listado.map((item) => (
-            <tr key={item.filmId}>
+            <tr key={item.languageId}>
               <td>{titleCase(item.info)}</td>
               <td className="text-end">
                 <div className="btn-group text-end" role="group">
@@ -238,19 +238,19 @@ function ActoresList(props) {
                     type="button"
                     className="btn btn-primary"
                     value="Ver"
-                    onClick={(e) => props.onView(item.filmId)}
+                    onClick={(e) => props.onView(item.languageId)}
                   />
                   <input
                     type="button"
                     className="btn btn-primary"
                     value="Editar"
-                    onClick={(e) => props.onEdit(item.filmId)}
+                    onClick={(e) => props.onEdit(item.languageId)}
                   />
                   <input
                     type="button"
                     className="btn btn-danger"
                     value="Borrar"
-                    onClick={(e) => props.onDelete(item.filmId)}
+                    onClick={(e) => props.onDelete(item.languageId)}
                   />
                 </div>
               </td>
@@ -266,26 +266,15 @@ function ActoresList(props) {
     </>
   );
 }
-function ActoresView({ elemento, onCancel }) {
+function LanguageView({ elemento, onCancel }) {
   return (
     <div>
       <p>
         <b>Código:</b> {elemento.id}
         <br />
-        <b>Titulo:</b> {elemento.title}
-        <br />
-        <b>Descripcion:</b> {elemento.descr}
-        <br />
-        <b>Lenght:</b> {elemento.lenght}
-        <br />
-        <b>Rating:</b> {elemento.rating}
-        <br />
-        <b>Release Year:</b> {elemento.releaseYear}
-        <br/>
+        <b>Nombre:</b> {elemento.nombre}
         
-        <b>Language:</b> {elemento.language.idioma}
-        <br/>
-      
+        
       </p>
       <p>
         <button
@@ -321,27 +310,14 @@ class ActoresForm extends Component {
     });
     this.validar();
   }
-  validarCntr(cntr) {
-    if (cntr.name) {
-      // eslint-disable-next-line default-case
-      switch (cntr.name) {
-        case "apellidos":
-          cntr.setCustomValidity(
-            cntr.value !== cntr.value.toUpperCase()
-              ? "Debe estar en mayúsculas"
-              : ""
-          );
-          break;
-      }
-    }
-  }
+  
   validar() {
     if (this.form) {
       const errors = {};
       let invalid = false;
       for (var cntr of this.form.elements) {
         if (cntr.name) {
-          this.validarCntr(cntr);
+         
           errors[cntr.name] = cntr.validationMessage;
           invalid = invalid || !cntr.validity.valid;
         }
@@ -360,7 +336,7 @@ class ActoresForm extends Component {
         }}
       >
         <div className="form-group">
-          <label htmlFor="id">Código</label>
+          <label htmlFor="id">Pelicula ID</label>
           <input
             type="number"
             className={"form-control" + (this.props.isAdd ? "" : "-plaintext")}
@@ -384,24 +360,11 @@ class ActoresForm extends Component {
             onChange={this.handleChange}
             required
             minLength="2"
-            maxLength="45"
+            maxLength="20"
           />
           <ValidationMessage msg={this.state.msgErr.nombre} />
         </div>
-        <div className="form-group">
-          <label htmlFor="apellidos">Apellidos</label>
-          <input
-            type="text"
-            className="form-control"
-            id="apellidos"
-            name="apellidos"
-            value={this.state.elemento.apellidos}
-            onChange={this.handleChange}
-            minLength="2"
-            maxLength="10"
-          />
-          <ValidationMessage msg={this.state.msgErr.apellidos} />
-        </div>
+       
         <div className="form-group">
           <button
             className="btn btn-primary"
