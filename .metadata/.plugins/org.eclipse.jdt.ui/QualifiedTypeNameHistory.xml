@@ -5,10 +5,8 @@
     <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.EnumSource"/>
     <fullyQualifiedTypeName name="org.h2.server.web.WebServer"/>
     <fullyQualifiedTypeName name="com.mysql.cj.protocol.Message"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.FilmActor"/>
     <fullyQualifiedTypeName name="com.example.domains.core.entities.EntityBase"/>
     <fullyQualifiedTypeName name="com.example.exception.NotFoundException"/>
-    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.FilmRepository"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.repositories.LanguageRepository"/>
     <fullyQualifiedTypeName name="com.example.application.reosources.ActorResource"/>
@@ -25,7 +23,6 @@
     <fullyQualifiedTypeName name="K"/>
     <fullyQualifiedTypeName name="V"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.aspectj.weaver.NewConstructorTypeMunger"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.dtos.ElementoDTO"/>
     <fullyQualifiedTypeName name="com.example.domains.contracts.service.ActorService"/>
@@ -57,7 +54,10 @@
     <fullyQualifiedTypeName name="java.lang.Short"/>
     <fullyQualifiedTypeName name="org.h2.result.SimpleRowValue"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestControllerAdvice"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.domains.entities.Film"/>
     <fullyQualifiedTypeName name="org.springframework.data.rest.core.config.Projection"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.Actor"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.example.domains.entities.FilmActor"/>
 </qualifiedTypeNameHistroy>

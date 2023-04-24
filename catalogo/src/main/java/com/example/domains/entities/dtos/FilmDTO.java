@@ -44,14 +44,16 @@ public class FilmDTO {
 	private Language languageVO;
 	@JsonProperty("actors")
 	private List<String> actors;
+	@JsonProperty("categories")
+	private List<String> categories;
 
 	
 	public static FilmDTO from(Film target) {
 		return new FilmDTO(target.getFilmId(), target.getDescription(), target.getTitle(),
 				target.getLength(), target.getRating(), target.getReleaseYear(),target.getRentalDuration(),
 				target.getRentalRate(),target.getReplacementCost(), target.getLanguage(), target.getLanguageVO(), 
-				target.getActors().stream().map(item -> item.getFirstName() + " " + item.getLastName()).sorted().toList()
-				
+				target.getActors().stream().map(item -> item.getFirstName() + " " + item.getLastName()).sorted().toList(),
+				target.getCategories().stream().map(item -> item.getName()).sorted().toList()
 				);
 	}
 	

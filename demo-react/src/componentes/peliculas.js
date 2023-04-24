@@ -247,6 +247,7 @@ function ActoresList(props) {
                     onClick={(e) => props.onEdit(item.filmId)}
                   />
                   <input
+                  hidden
                     type="button"
                     className="btn btn-danger"
                     value="Borrar"
@@ -295,7 +296,10 @@ function ActoresView({ elemento, onCancel }) {
                 {elemento.actors.map((item, index) => <li ley={index}>{titleCase(item)}</li>)}
             </ul>
         <br/>
-       
+        <ul className="list">
+                {elemento.categories.map((item, index) => <li ley={index}>{titleCase(item)}</li>)}
+            </ul>
+        <br/>
         <br/>
       
       </p>
@@ -398,8 +402,7 @@ class ActoresForm extends Component {
             value={this.state.elemento.descr}
             onChange={this.handleChange}
             required
-            minLength="2"
-            maxLength="45"
+        
           />
           <ValidationMessage msg={this.state.msgErr.descripcion} />
         </div>
@@ -412,8 +415,7 @@ class ActoresForm extends Component {
             name="title"
             value={this.state.elemento.title}
             onChange={this.handleChange}
-            minLength="2"
-            maxLength="10"
+           
           />
           <ValidationMessage msg={this.state.msgErr.title} />
         </div>
@@ -458,7 +460,7 @@ class ActoresForm extends Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="rentalDuration">releaseYear </label>
+          <label htmlFor="rentalDuration">rentalDuration </label>
           <input
             type="number"
             className="form-control"
@@ -499,7 +501,7 @@ class ActoresForm extends Component {
         <div className="form-group">
           <label htmlFor="language">language </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="language"
             name="language"
