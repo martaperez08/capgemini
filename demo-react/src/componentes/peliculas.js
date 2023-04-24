@@ -272,7 +272,8 @@ function ActoresView({ elemento, onCancel }) {
   return (
     <div>
       <p>
-      {console.log(elemento.filmActors)}
+  
+      
         <b>Código:</b> {elemento.id}
         <br />
         <b>Titulo:</b> {elemento.title}
@@ -290,7 +291,10 @@ function ActoresView({ elemento, onCancel }) {
         <br/>
         <br/>
        
-        <b>Language:</b>
+        <ul className="list">
+                {elemento.actors.map((item, index) => <li ley={index}>{titleCase(item)}</li>)}
+            </ul>
+        <br/>
        
         <br/>
       

@@ -1,6 +1,7 @@
 package com.example.domains.entities.dtos;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.boot.autoconfigure.amqp.RabbitRetryTemplateCustomizer.Target;
 
@@ -41,12 +42,17 @@ public class FilmDTO {
 	private Language language;
 	@JsonProperty("languageVO")
 	private Language languageVO;
-	
+	@JsonProperty("actors")
+	private List<String> actors;
+
 	
 	public static FilmDTO from(Film target) {
 		return new FilmDTO(target.getFilmId(), target.getDescription(), target.getTitle(),
 				target.getLength(), target.getRating(), target.getReleaseYear(),target.getRentalDuration(),
-				target.getRentalRate(),target.getReplacementCost(), target.getLanguage(), target.getLanguageVO());
+				target.getRentalRate(),target.getReplacementCost(), target.getLanguage(), target.getLanguageVO(), 
+				target.getActors().stream().map(item -> item.getFirstName() + " " + item.getLastName()).sorted().toList()
+				
+				);
 	}
 	
 	public static Film from(FilmDTO target) {
