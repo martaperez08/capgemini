@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import myPop from "../imagenes/categoria.png";
 import {
   ValidationMessage,
   ErrorMessage,
@@ -216,12 +217,12 @@ function ActoresList(props) {
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
-          <tr>
+          <tr class="table-dark">
             <th>Lista de Categorias</th>
             <th className="text-end">
               <input
                 type="button"
-                className="btn btn-primary"
+                class="btn btn-success"
                 value="Añadir"
                 onClick={(e) => props.onAdd()}
               />
@@ -268,22 +269,27 @@ function ActoresList(props) {
 }
 function ActoresView({ elemento, onCancel }) {
   return (
-    <div>
-      <p>
-        <b>Código:</b> {elemento.id}
-        <br />
-        <b>Nombre:</b> {elemento.nombre}
-        
-      </p>
-      <p>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={(e) => onCancel()}
-        >
-          Volver
-        </button>
-      </p>
+    <div className="col d-flex justify-content-center m-2  ">
+      <div className="card" style={{ width: "25rem" }}>
+        <img className="card-img-top" src={myPop} alt="Card image cap" />
+        <div className="card-body">
+          <h5 className="card-title">CATEGORIA</h5>
+          <p>
+            <b>Código:</b> {elemento.id}
+            <br />
+            <b>Nombre:</b> {elemento.nombre}
+          </p>
+          <p>
+            <button
+              className="btn btn-outline-info"
+              type="button"
+              onClick={(e) => onCancel()}
+            >
+              Volver
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -309,9 +315,7 @@ class ActoresForm extends Component {
     });
     this.validar();
   }
-  validarCntr(cntr) {
-
-  }
+  validarCntr(cntr) {}
   validar() {
     if (this.form) {
       const errors = {};
@@ -365,7 +369,7 @@ class ActoresForm extends Component {
           />
           <ValidationMessage msg={this.state.msgErr.nombre} />
         </div>
-       
+
         <div className="form-group">
           <button
             className="btn btn-primary"

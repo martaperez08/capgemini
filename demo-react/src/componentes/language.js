@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import myPop from "../imagenes/idioma.jpg";
 import {
   ValidationMessage,
   ErrorMessage,
@@ -216,12 +217,12 @@ function LanguageList(props) {
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
-          <tr>
+          <tr class="table-dark">
             <th>Lista de Language</th>
             <th className="text-end">
               <input
                 type="button"
-                className="btn btn-primary"
+                class="btn btn-success"
                 value="Añadirr"
                 onClick={(e) => props.onAdd()}
               />
@@ -268,23 +269,27 @@ function LanguageList(props) {
 }
 function LanguageView({ elemento, onCancel }) {
   return (
-    <div>
-      <p>
-        <b>Código:</b> {elemento.id}
-        <br />
-        <b>Nombre:</b> {elemento.nombre}
-        
-        
-      </p>
-      <p>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={(e) => onCancel()}
-        >
-          Volver
-        </button>
-      </p>
+    <div className="col d-flex justify-content-center m-2  ">
+      <div className="card" style={{ width: "25rem" }}>
+        <img className="card-img-top" src={myPop} alt="Card image cap" />
+        <div className="card-body">
+          <h5 className="card-title">IDIOMA</h5>
+          <p>
+            <b>Código:</b> {elemento.id}
+            <br />
+            <b>Nombre:</b> {elemento.nombre}
+          </p>
+          <p>
+            <button
+              className="btn btn-outline-info"
+              type="button"
+              onClick={(e) => onCancel()}
+            >
+              Volver
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -310,14 +315,13 @@ class ActoresForm extends Component {
     });
     this.validar();
   }
-  
+
   validar() {
     if (this.form) {
       const errors = {};
       let invalid = false;
       for (var cntr of this.form.elements) {
         if (cntr.name) {
-         
           errors[cntr.name] = cntr.validationMessage;
           invalid = invalid || !cntr.validity.valid;
         }
@@ -364,7 +368,7 @@ class ActoresForm extends Component {
           />
           <ValidationMessage msg={this.state.msgErr.nombre} />
         </div>
-       
+
         <div className="form-group">
           <button
             className="btn btn-primary"

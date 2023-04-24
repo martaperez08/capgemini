@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import myPop from "../imagenes/pop.jpg";
 import {
   ValidationMessage,
   ErrorMessage,
@@ -216,7 +217,7 @@ function ActoresList(props) {
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
-          <tr class="table-dark"  >
+          <tr class="table-dark">
             <th>LISTA DE PELÍCULAS</th>
             <th className="text-end">
               <input
@@ -247,7 +248,7 @@ function ActoresList(props) {
                     onClick={(e) => props.onEdit(item.filmId)}
                   />
                   <input
-                  hidden
+                    hidden
                     type="button"
                     className="btn btn-danger"
                     value="Borrar"
@@ -268,55 +269,58 @@ function ActoresList(props) {
   );
 }
 function ActoresView({ elemento, onCancel }) {
-
-
   return (
-    <div>
-      <p>
-  
-      
-        <b>Código:</b> {elemento.id}
-        <br />
-        <b>Titulo:</b> {elemento.title}
-        <br />
-        <b>Descripcion:</b> {elemento.descr}
-        <br />
-        <b>Lenght:</b> {elemento.lenght}
-        <br />
-        <b>Rating:</b> {elemento.rating}
-        <br />
-        <b>Release Year:</b> {elemento.releaseYear}
-        <br/>
-        
-        <b>Language:</b> {elemento.language.idioma}
-        <br/>
-        <br/>
-       
-        <ul className="list">
-                {elemento.actors.map((item, index) => <li ley={index}>{titleCase(item)}</li>)}
+    <div className="col d-flex justify-content-center m-2  ">
+      <div className="card" style={{ width: "25rem" }}>
+        <img className="card-img-top" src={myPop} alt="Card image cap" />
+        <div className="card-body">
+          <h5 className="card-title">PELÍCULA</h5>
+          <p>
+            <b>Código:</b> {elemento.id}
+            <br />
+            <b>Titulo:</b> {elemento.title}
+            <br />
+            <b>Descripcion:</b> {elemento.descr}
+            <br />
+            <b>Lenght:</b> {elemento.lenght}
+            <br />
+            <b>Rating:</b> {elemento.rating}
+            <br />
+            <b>Release Year:</b> {elemento.releaseYear}
+            <br />
+            <b>Language:</b> {elemento.language.idioma}
+            <br />
+            <b>Actores:</b>
+            <br />
+            <ul className="list">
+              {elemento.actors.map((item, index) => (
+                <li ley={index}>{titleCase(item)}</li>
+              ))}
             </ul>
-        <br/>
-        <ul className="list">
-                {elemento.categories.map((item, index) => <li ley={index}>{titleCase(item)}</li>)}
+            <br />
+            <b>Categorias:</b>
+            <br />
+            <ul className="list">
+              {elemento.categories.map((item, index) => (
+                <li ley={index}>{titleCase(item)}</li>
+              ))}
             </ul>
-        <br/>
-        <br/>
-      
-      </p>
-      <p>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={(e) => onCancel()}
-        >
-          Volver
-        </button>
-      </p>
+            <br />
+            <br />
+          </p>
+          <p>
+            <button
+              className="btn btn-outline-info"
+              type="button"
+              onClick={(e) => onCancel()}
+            >
+              Volver
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
-
-    
   );
-  
 }
 
 class ActoresForm extends Component {
@@ -402,7 +406,6 @@ class ActoresForm extends Component {
             value={this.state.elemento.descr}
             onChange={this.handleChange}
             required
-        
           />
           <ValidationMessage msg={this.state.msgErr.descripcion} />
         </div>
@@ -415,7 +418,6 @@ class ActoresForm extends Component {
             name="title"
             value={this.state.elemento.title}
             onChange={this.handleChange}
-           
           />
           <ValidationMessage msg={this.state.msgErr.title} />
         </div>
@@ -428,7 +430,6 @@ class ActoresForm extends Component {
             name="lenght"
             value={this.state.elemento.lenght}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.lenght} />
         </div>
@@ -441,7 +442,6 @@ class ActoresForm extends Component {
             name="rating"
             value={this.state.elemento.rating}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.rating} />
         </div>
@@ -454,7 +454,6 @@ class ActoresForm extends Component {
             name="releaseYear"
             value={this.state.elemento.releaseYear}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.releaseYear} />
         </div>
@@ -468,7 +467,6 @@ class ActoresForm extends Component {
             name="rentalDuration"
             value={this.state.elemento.rentalDuration}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.rentalDuration} />
         </div>
@@ -481,7 +479,6 @@ class ActoresForm extends Component {
             name="rentalRate"
             value={this.state.elemento.rentalRate}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.rentalRate} />
         </div>
@@ -494,7 +491,6 @@ class ActoresForm extends Component {
             name="replacementCost"
             value={this.state.elemento.replacementCost}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.replacementCost} />
         </div>
@@ -507,12 +503,9 @@ class ActoresForm extends Component {
             name="language"
             value={this.state.elemento.language}
             onChange={this.handleChange}
-          
           />
           <ValidationMessage msg={this.state.msgErr.language} />
         </div>
-
-
 
         <div className="form-group">
           <button
