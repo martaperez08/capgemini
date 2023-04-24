@@ -217,13 +217,13 @@ function ActoresList(props) {
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
-          <tr>
-            <th>Lista de Actores y Actrices</th>
+          <tr class="table-dark" >
+            <th>LISTA DE ACTORES Y ACTRICES</th>
             <th className="text-end">
               <input
                 type="button"
-                className="btn btn-primary"
-                value="Añadirr"
+                class="btn btn-success"
+                value="Añadir"
                 onClick={(e) => props.onAdd()}
               />
             </th>
@@ -269,7 +269,7 @@ function ActoresList(props) {
 }
 function ActoresView({ elemento, onCancel }) {
   return (
-    <div className="col d-flex justify-content-center m-2">
+    <div className="col d-flex justify-content-center m-2  ">
 
     <div className="card" style={{ width: "25rem"}} >
       <img className="card-img-top" src={myPop} alt="Card image cap" />

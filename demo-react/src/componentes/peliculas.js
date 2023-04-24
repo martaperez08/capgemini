@@ -216,12 +216,12 @@ function ActoresList(props) {
     <>
       <table className="table table-hover table-striped">
         <thead className="table-info">
-          <tr>
-            <th>Lista de peliculas</th>
+          <tr class="table-dark"  >
+            <th>LISTA DE PELÍCULAS</th>
             <th className="text-end">
               <input
                 type="button"
-                className="btn btn-primary"
+                class="btn btn-success"
                 value="Añadir"
                 onClick={(e) => props.onAdd()}
               />
@@ -267,9 +267,12 @@ function ActoresList(props) {
   );
 }
 function ActoresView({ elemento, onCancel }) {
+
+
   return (
     <div>
       <p>
+      {console.log(elemento.filmActors)}
         <b>Código:</b> {elemento.id}
         <br />
         <b>Titulo:</b> {elemento.title}
@@ -285,6 +288,11 @@ function ActoresView({ elemento, onCancel }) {
         
         <b>Language:</b> {elemento.language.idioma}
         <br/>
+        <br/>
+       
+        <b>Language:</b>
+       
+        <br/>
       
       </p>
       <p>
@@ -297,7 +305,10 @@ function ActoresView({ elemento, onCancel }) {
         </button>
       </p>
     </div>
+
+    
   );
+  
 }
 
 class ActoresForm extends Component {
