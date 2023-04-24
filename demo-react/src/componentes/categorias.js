@@ -173,7 +173,7 @@ export class CategoriasMnt extends Component {
       case "add":
       case "edit":
         result.push(
-          <ActoresForm
+          <CategoriasForm
             key="main"
             isAdd={this.state.modo === "add"}
             elemento={this.state.elemento}
@@ -184,7 +184,7 @@ export class CategoriasMnt extends Component {
         break;
       case "view":
         result.push(
-          <ActoresView
+          <CategoriasView
             key="main"
             elemento={this.state.elemento}
             onCancel={(e) => this.cancel()}
@@ -194,7 +194,7 @@ export class CategoriasMnt extends Component {
       default:
         if (this.state.listado)
           result.push(
-            <ActoresList
+            <CategoriasList
               key="main"
               listado={this.state.listado}
               pagina={this.state.pagina}
@@ -212,7 +212,7 @@ export class CategoriasMnt extends Component {
   }
 }
 
-function ActoresList(props) {
+function CategoriasList(props) {
   return (
     <>
       <table className="table table-hover table-striped">
@@ -267,7 +267,7 @@ function ActoresList(props) {
     </>
   );
 }
-function ActoresView({ elemento, onCancel }) {
+function CategoriasView({ elemento, onCancel }) {
   return (
     <div className="col d-flex justify-content-center m-2  ">
       <div className="card" style={{ width: "25rem" }}>
@@ -294,7 +294,7 @@ function ActoresView({ elemento, onCancel }) {
   );
 }
 
-class ActoresForm extends Component {
+class CategoriasForm extends Component {
   constructor(props) {
     super(props);
     this.state = { elemento: props.elemento, msgErr: [], invalid: false };

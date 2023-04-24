@@ -269,7 +269,7 @@ function ActoresList(props) {
 }
 function ActoresView({ elemento, onCancel }) {
   return (
-    <div className="col d-flex justify-content-center m-2  ">
+    <div className="col d-flex justify-content-center m-2 mt-4 ">
 
     <div className="card" style={{ width: "25rem"}} >
       <img className="card-img-top" src={myPop} alt="Card image cap" />

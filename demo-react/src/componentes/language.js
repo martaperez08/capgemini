@@ -173,7 +173,7 @@ export class LanguageMnt extends Component {
       case "add":
       case "edit":
         result.push(
-          <ActoresForm
+          <LanguageForm
             key="main"
             isAdd={this.state.modo === "add"}
             elemento={this.state.elemento}
@@ -294,7 +294,7 @@ function LanguageView({ elemento, onCancel }) {
   );
 }
 
-class ActoresForm extends Component {
+class LanguageForm extends Component {
   constructor(props) {
     super(props);
     this.state = { elemento: props.elemento, msgErr: [], invalid: false };
